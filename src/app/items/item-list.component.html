@@ -1,0 +1,49 @@
+<h3>
+  Items
+  <small class="subtle">
+    <!-- <i class="fa fa-exclamation-circle" [ngStyle]="{ color: 'red' }" *ngIf="item.quantity === 0"></i>
+    <i class="fa fa-warning" [ngStyle]="{ color: 'orange' }" *ngIf="hasLowStock(item)"></i> -->
+  </small>
+</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <td></td>
+      <td>Code</td>
+      <td>Name</td>
+      <td>Description</td>
+      <td>Quantity</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody *ngFor="let item of items | async">
+    <tr>
+      <td>
+        <span [ngSwitch]="stockLevel(item)">
+          <i *ngSwitchCase="StockLevel.out" class="fa fa-exclamation-circle" [ngStyle]="{ color: 'red' }"></i>
+          <i *ngSwitchCase="StockLevel.low" class="fa fa-warning" [ngStyle]="{ color: 'orange' }"></i>
+          <i *ngSwitchCase="StockLevel.overstock" class="fa fa-tint" [ngStyle]="{ color: 'blue' }"></i>
+          <i *ngSwitchDefault class="fa fa-check" [ngStyle]="{ color: 'green' }"></i>
+        </span>
+      </td>
+      <td>
+        <a [routerLink]="['/items', item.id]">{{ item.code }}</a>
+      </td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.description }}</td>
+      <td class="text-right">{{ item.quantity | number }}</td>
+      <td>
+        <quantity-editor [item]="item" (change)="onQuantityChange($event)"></quantity-editor>
+        <a class="btn btn-xs btn-danger" (click)="removeItem(item)">
+          <i class="fa fa-remove"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="error | async" class="text-danger well">
+  {{ error | async }}
+</div>
+<div>
+  <button class="btn" (click)="addItem()">Add New</button>
+</div>

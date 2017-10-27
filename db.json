@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "id": 2,
+      "code": "ABC2",
+      "name": "item 2",
+      "description": "Lorem ipsum dolor sit amet",
+      "imageUrl": "http://via.placeholder.com/30x30",
+      "quantity": 0
+    },
+    {
+      "id": 3,
+      "code": "ABC3",
+      "name": "item 3",
+      "description": "Lorem ipsum dolor sit amet",
+      "imageUrl": "http://via.placeholder.com/30x30",
+      "quantity": 2
+    },
+    {
+      "code": "New Item",
+      "id": 4
+    },
+    {
+      "code": "New Item",
+      "id": 5
+    }
+  ]
+}
