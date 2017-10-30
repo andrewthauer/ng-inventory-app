@@ -16,7 +16,7 @@
       <td></td>
     </tr>
   </thead>
-  <tbody *ngFor="let item of items | async">
+  <tbody *ngFor="let item of (items | async)">
     <tr>
       <td>
         <span [ngSwitch]="stockLevel(item)">

@@ -1,2 +1,2 @@
-export * from './http.service';
+export * from './item-persistence.service';
 export * from './item.service';

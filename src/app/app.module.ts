@@ -9,12 +9,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppComponent } from './app.component';
 import { routing } from './app.routes';
 
-import { itemsReducer, ItemActions } from './common/stores';
+import {
+  appReducer,
+  ItemEffects,
+} from './common/stores';
 
 import {
-  HttpService,
+  ItemPersistenceService,
   ItemService,
-  ItemEffects
 } from './common/services';
 
 import {
@@ -44,16 +46,15 @@ import { HomeComponent } from './home';
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({ items: itemsReducer }),
+    StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
     EffectsModule.forRoot([ItemEffects]),
     HttpClientModule,
     routing,
   ],
   providers: [
-    HttpService,
-    ItemService,
-    ItemActions,
+    ItemPersistenceService,
+    ItemService
   ],
   bootstrap: [AppComponent]
 })
