@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'item-details',
+  selector: 'app-item-details',
   templateUrl: 'item-details.component.html'
 })
 export class ItemDetailsComponent implements OnInit {

@@ -24,13 +24,15 @@ export interface ItemsState {
   error: Error;
   isLoading: boolean;
   selectedItemId: number;
+  confirmationVisible: boolean;
 }
 
 export const INITIAL_ITEMS_STATE: ItemsState = {
   items: [],
   error: null,
   isLoading: false,
-  selectedItemId: null
+  selectedItemId: null,
+  confirmationVisible: false
 };
 
 // ----------------------------------------------

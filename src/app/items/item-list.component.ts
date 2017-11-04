@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/observable';
 import { Store } from '@ngrx/store';
 
-import { AppState, itemActions } from '../common/stores';
+import { AppState, itemActions } from '../common/store';
 import { ItemService } from '../common';
 import { Item, StockLevel } from '../common/models';
 
 @Component({
-  selector: 'item-list',
+  selector: 'app-item-list',
   templateUrl: './item-list.component.html',
   styles: [`
     .low-stock { color: red; }

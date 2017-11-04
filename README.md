@@ -1,16 +1,40 @@
-# Inventory App
+Inventory Trax
+==============
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.7.
+>> Track items in a simple inventory system
 
-## Development server
+This is a sample angular application using the following:
+
+* [Angular v5](https://angular.io/)
+* [RxJS](https://github.com/Reactive-Extensions/RxJS)
+* [ngrx](https://github.com/ngrx/platform)
+* [Ramda](http://ramdajs.com/)
+* [Tachyons CSS](http://tachyons.io/)
+* [Font Awesome](http://fontawesome.io/)
+* [JSON Server](https://github.com/typicode/json-server)
+
+*Note: This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.7.*
+
+Setup
+-----
+
+```shell
+cp db-example.json db.json
+npm install && npm start
+```
+
+Usage
+-----
+
+### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+### Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'items',
+  selector: 'app-items',
   template: `
     <div>
-    <a routerLink="/home">Home</a>
-      <item-list></item-list>
+      <app-item-list></app-item-list>
     </div>
   `
 })

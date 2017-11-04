@@ -4,10 +4,10 @@ import { Store } from '@ngrx/store';
 
 import { Item } from '../models';
 import { ItemPersistenceService } from './item-persistence.service';
-import { AppState, itemActions } from '../stores';
+import { AppState, itemActions } from '../store';
 
 const buildItem = (code = 'New Item', name?: string): Item => {
-  return { code, name };
+  return { code, name, quantity: 0 };
 };
 
 @Injectable()

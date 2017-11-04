@@ -5,11 +5,11 @@ import { Item } from '../common/models';
 // TODO: Expose event so parent can update itself
 
 @Component({
-  selector: 'quantity-editor',
+  selector: 'app-quantity-editor',
   template: `
     <span>
-      <button class="btn btn-xs" (click)="increaseQty(item)"><i class="fa fa-plus"></i></button>
-      <button class="btn btn-xs" (click)="decreaseQty(item)"><i class="fa fa-minus"></i></button>
+      <button class="br2 pa2 white bg-mid-gray" (click)="increaseQty(item)"><i class="fa fa-plus"></i></button>
+      <button class="br2 pa2 white bg-mid-gray" (click)="decreaseQty(item)"><i class="fa fa-minus"></i></button>
     </span>
   `
 })

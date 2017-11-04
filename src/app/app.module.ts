@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
@@ -12,7 +13,7 @@ import { routing } from './app.routes';
 import {
   appReducer,
   ItemEffects,
-} from './common/stores';
+} from './common/store';
 
 import {
   ItemPersistenceService,
@@ -21,7 +22,7 @@ import {
 
 import {
   HeaderComponent,
-  HeroComponent,
+  HeroUnitComponent,
 } from './common/components';
 
 import {
@@ -37,7 +38,7 @@ import { HomeComponent } from './home';
   declarations: [
     AppComponent,
     HeaderComponent,
-    HeroComponent,
+    HeroUnitComponent,
     HomeComponent,
     ItemsComponent,
     ItemListComponent,
@@ -46,6 +47,7 @@ import { HomeComponent } from './home';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
     EffectsModule.forRoot([ItemEffects]),
