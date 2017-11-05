@@ -27,6 +27,11 @@ export const INITIAL_APP_STATE: AppState = {
 };
 
 // ----------------------------------------------
+// Store
+
+// Note Yet
+
+// ----------------------------------------------
 // Actions
 
 // None Yet

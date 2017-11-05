@@ -13,11 +13,13 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/switchMap';
 
 import * as fns from './common';
-import { appError, upsert } from '../utils';
+import { appError, upsert, remove } from '../utils';
 import { actionCreatorFactory, isType, FsaAction, reducerWithInitialState } from '../../lib/ngrx-fsa';
 
 import { Item } from '../models';
 import { ItemPersistenceService } from '../services/item-persistence.service';
+
+const DELAY_SIMULATION = 500;
 
 // ----------------------------------------------
 // State
@@ -25,13 +27,13 @@ import { ItemPersistenceService } from '../services/item-persistence.service';
 export interface ItemState {
   items: Item[];
   error: Error;
-  isFetching: boolean;
+  isBusy: boolean;
 }
 
 export const INITIAL_ITEM_STATE: ItemState = {
   items: [],
   error: null,
-  isFetching: false
+  isBusy: false
 };
 
 // ----------------------------------------------
@@ -44,7 +46,8 @@ export const itemActions = {
   loadItems: actionCreator.async<void, Item[], Error>('LOAD_ITEMS'),
   loadItem: actionCreator.async<number, Item, Error>('LOAD_ITEM'),
   addItem: actionCreator.async<Item, Item, Error>('ADD_ITEM'),
-  deleteItem: actionCreator.async<Item, boolean, Error>('DELETE_ITEM'),
+  saveItem: actionCreator.async<Item, Item, Error>('SAVE_ITEM'),
+  deleteItem: actionCreator.async<Item, Item, Error>('DELETE_ITEM'),
   incrementQuantity: actionCreator.async<Item, Item, Error>('INCREMENT_QUANTITY'),
   decrementQuantity: actionCreator.async<Item, Item, Error>('DECREMENT_QUANTITY')
 };
@@ -57,23 +60,39 @@ export const itemSelector = (state: ItemState, id: number) => state.items.filter
 // ----------------------------------------------
 // Reducers
 
-const handleAsyncError = (state, err) => ({ ...fns.handleError(state, err), isFetching: false });
+const handleAsyncError = (state, err) => ({ ...fns.handleError(state, err), isBusy: false });
+
+const startAsync = (state, payload: any) => ({
+  ...state,
+  isBusy: true
+});
+
+const upsertItem = (state, item: Item) => ({
+  ...state,
+  items: upsert(i => i.id, item, state.items),
+  isBusy: false
+});
+
+const removeItem = (state, item: Item) => ({
+  ...state,
+  items: remove(i => i.id, item, state.items),
+  isBusy: false
+});
 
 const reducer = reducerWithInitialState(INITIAL_ITEM_STATE)
-  // stated
-  .case(itemActions.loadItems.started, (state, items) => ({ ...state, isFetching: true }))
-  .case(itemActions.loadItem.started, (state, item) => ({ ...state, isFetching: true }))
+  // started
+  .case(itemActions.loadItems.started, startAsync)
+  .case(itemActions.loadItem.started, startAsync)
+  .case(itemActions.addItem.started, startAsync)
+  .case(itemActions.saveItem.started, startAsync)
+  .case(itemActions.deleteItem.started, startAsync)
   // done
-  .case(itemActions.loadItems.done, (state, items) => ({ ...state, items, isFetching: false }))
-  .case(itemActions.loadItem.done, (state, item) => {
-    return {
-      ...state,
-      items: upsert(i => i.id, item, state.items),
-      isFetching: false
-    };
-  })
-  // .case(itemActions.loadItem.done, (state, item) => ({ ...state, selectedItem: item }))
-  // Error Handlers (make array helper)
+  .case(itemActions.loadItems.done, (state, items) => ({ ...state, items, isBusy: false }))
+  .case(itemActions.loadItem.done, upsertItem)
+  .case(itemActions.addItem.done, upsertItem)
+  .case(itemActions.saveItem.done, upsertItem)
+  .case(itemActions.deleteItem.done, removeItem)
+  // failed
   .case(itemActions.loadItems.failed, handleAsyncError)
   .case(itemActions.loadItem.failed, handleAsyncError)
   .case(itemActions.addItem.failed, fns.handleError)
@@ -98,7 +117,7 @@ export class ItemEffects {
   loadItems$ = this.actions$
     .ofType<FsaAction<Item[]>>(itemActions.loadItems.started.type)
     .switchMap(() => this.persistence.getItems())
-    .delay(500) // simulate waiting
+    .delay(DELAY_SIMULATION)
     .map(items => itemActions.loadItems.done(items))
     .catch(err => of(itemActions.loadItems.failed(appError(err))));
 
@@ -107,7 +126,7 @@ export class ItemEffects {
     .ofType<FsaAction<number>>(itemActions.loadItem.started.type)
     .map(action => action.payload)
     .switchMap(id => this.persistence.getItem(id))
-    .delay(500) // simulate waiting
+    .delay(DELAY_SIMULATION)
     .map(item => itemActions.loadItem.done(item))
     .catch(err => of(itemActions.loadItem.failed(appError(err))));
 
@@ -117,15 +136,23 @@ export class ItemEffects {
     .map(action => action.payload)
     .switchMap(item => this.persistence.saveItem(item))
     .map(item => itemActions.addItem.done(item))
-    .map(item => itemActions.loadItems.started()) // TODO: Make proper reducer
     .catch(err => of(itemActions.addItem.failed(appError(err))));
+
+  @Effect()
+  saveItem$ = this.actions$
+    .ofType<FsaAction<Item>>(itemActions.saveItem.started.type)
+    .map(action => action.payload)
+    .switchMap(item => this.persistence.saveItem(item))
+    .delay(DELAY_SIMULATION)
+    .map(item => itemActions.saveItem.done(item))
+    .catch(err => of(itemActions.saveItem.failed(appError(err))));
 
   @Effect()
     deleteItem$ = this.actions$
       .ofType<FsaAction<Item>>(itemActions.deleteItem.started.type)
       .map(action => action.payload)
       .switchMap(item => this.persistence.deleteItem(item))
-      .map(item => itemActions.deleteItem.done(true))
-      .map(item => itemActions.loadItems.started()) // TODO: Make proper reducer
+      .delay(DELAY_SIMULATION)
+      .map(item => itemActions.deleteItem.done(item))
       .catch(err => of(itemActions.deleteItem.failed(appError(err))));
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -18,6 +19,7 @@ import { HomeComponent } from './home';
 
 import {
   ItemsComponent,
+  ItemFormComponent,
   ItemListComponent,
   ItemDetailsComponent,
   QuantityEditorComponent,
@@ -28,20 +30,23 @@ import {
     AppComponent,
     HomeComponent,
     ItemsComponent,
+    ItemFormComponent,
     ItemListComponent,
     ItemDetailsComponent,
     QuantityEditorComponent,
   ],
   imports: [
+    AppCommonModule,
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+    EffectsModule.forRoot(allEffects),
+    HttpClientModule,
+    ReactiveFormsModule,
+    routing,
     StoreModule.forRoot(rootReducer),
     StoreRouterConnectingModule,
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
-    EffectsModule.forRoot(allEffects),
-    HttpClientModule,
-    routing,
-    AppCommonModule,
   ],
   providers: [
     ItemPersistenceService,

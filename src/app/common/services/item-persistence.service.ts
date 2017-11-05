@@ -28,7 +28,8 @@ export class ItemPersistenceService {
     }
   }
 
-  deleteItem(item: Item) {
-    return this.http.delete(`${BASE_URL}/items/${item.id}`);
+  deleteItem(item: Item): Observable<Item> {
+    return this.http.delete<Item>(`${BASE_URL}/items/${item.id}`)
+      .map(() => item);
   }
 }

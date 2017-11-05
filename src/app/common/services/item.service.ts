@@ -11,8 +11,8 @@ import { Item } from '../models';
 import { ItemPersistenceService } from './item-persistence.service';
 import { AppState, itemActions } from '../state';
 
-const buildItem = (code = 'New Item', name?: string): Item => {
-  return { code, name, quantity: 0 };
+const buildItem = (code = 'NEW', name = 'New Item', description = ''): Item => {
+  return { code, name, description, quantity: 0 };
 };
 
 @Injectable()
@@ -27,9 +27,9 @@ export class ItemService {
     return Observable.combineLatest(
       this.store.select(state => state.data.items.items),
       this.store.select(state => state.data.items.error),
-      this.store.select(state => state.data.items.isFetching),
-      (items, error, isFetching) => {
-        return { items, error, isFetching };
+      this.store.select(state => state.data.items.isBusy),
+      (items, error, isBusy) => {
+        return { items, error, isBusy };
       }
     );
   }
@@ -44,8 +44,8 @@ export class ItemService {
     return Observable.combineLatest(
       itemSelector,
       this.store.select(state => state.data.items.error),
-      this.store.select(state => state.data.items.isFetching),
-      (item, error, isFetching) => ({ item, error, isFetching })
+      this.store.select(state => state.data.items.isBusy),
+      (item, error, isBusy) => ({ item, error, isBusy })
     );
   }
 
@@ -62,7 +62,11 @@ export class ItemService {
     this.store.dispatch(itemActions.addItem.started(newItem));
   }
 
-  removeItem(item: Item) {
+  saveItem(item: Item) {
+    this.store.dispatch(itemActions.saveItem.started(item));
+  }
+
+  deleteItem(item: Item) {
     this.store.dispatch(itemActions.deleteItem.started(item));
   }
 }

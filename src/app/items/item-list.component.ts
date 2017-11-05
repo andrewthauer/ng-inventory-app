@@ -32,8 +32,8 @@ export class ItemListComponent implements OnInit {
     this.itemService.addItem();
   }
 
-  removeItem(item: Item) {
-    this.itemService.removeItem(item);
+  deleteItem(item: Item) {
+    this.itemService.deleteItem(item);
   }
 
   stockLevel(item: Item): StockLevel {
@@ -56,7 +56,9 @@ export class ItemListComponent implements OnInit {
     return false;
   }
 
-  onQuantityChange(newQuantity) {
+  quantityChanged(item, newQuantity) {
     console.log(`Quantity changed: ${newQuantity}`);
+    const updatedItem = { ...item, quantity: newQuantity };
+    this.itemService.saveItem(item);
   }
 }

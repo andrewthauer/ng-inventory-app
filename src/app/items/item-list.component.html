@@ -1,5 +1,5 @@
 <app-title title="Items">
-  <i class="fa fa-spinner fa-spin" *ngIf="(model | async).isFetching"></i>
+  <i class="fa fa-spinner fa-spin" *ngIf="(model | async)?.isBusy"></i>
 </app-title>
 
 <table class="w-100">
@@ -30,11 +30,11 @@
           {{ (item.quantity || 0) | number }}
         </span>
         <span class="w-70">
-            <app-quantity-editor [item]="item" (change)="onQuantityChange($event)"></app-quantity-editor>
+            <app-quantity-editor [item]="item" (change)="quantityChanged(item, $event)"></app-quantity-editor>
         </span>
       </td>
       <td>
-        <button class="link br2 pa2 ml2 bg-red white" (click)="removeItem(item)">
+        <button class="link br2 pa2 ml2 bg-red white" (click)="deleteItem(item)">
           <i class="fa fa-remove"></i>
         </button>
       </td>
@@ -42,10 +42,10 @@
   </tbody>
 </table>
 
-<div *ngIf="(model | async).error" class="text-danger well">
-  {{ error | async }}
+<div *ngIf="(model | async)?.error" class="text-danger well">
+  {{ (model | async)?.error }}
 </div>
 
 <div class="mv3">
-  <app-button (click)="addItem()" [icon]="'plus'" [text]="'Add New'"></app-button>
+  <app-button (click)="addItem()" icon="plus" text="Add New"></app-button>
 </div>
