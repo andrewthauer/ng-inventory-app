@@ -1,3 +1,24 @@
-<h3>Product Details</h3>
+<app-title title="Item Details">
+  <i class="fa fa-spinner fa-spin" *ngIf="(model | async).isFetching"></i>
+</app-title>
 
-Product Id: {{ id }}
+<form class="black-80">
+  <div class="measure">
+    <!-- code -->
+    <label for="code" class="f6 b db mb2">Code</label>
+    <input id="code" class="input-reset ba b--black-20 pa2 mb3 db w-100" type="text" [value]="(model | async)?.item?.code">
+
+    <!-- name -->
+    <label for="name" class="f6 b db mb2">Name</label>
+    <input id="name" class="input-reset ba b--black-20 pa2 mb3 db w-100" type="text" [value]="(model | async)?.item?.name">
+
+    <!-- description -->
+    <label for="desc" class="f6 b db mb2">Description <span class="normal black-60">(optional)</span></label>
+    <textarea id="desc" class="input-reset ba b--black-20 pa2 mb3 db w-100" type="text" [value]="(model | async)?.item?.description"></textarea>
+  </div>
+
+  <div class="pv2">
+    <app-button [text]="'Save'"></app-button>
+    <app-button [text]="'Cancel'"></app-button>
+  </div>
+</form>

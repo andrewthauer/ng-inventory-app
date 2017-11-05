@@ -1,7 +1,7 @@
 Inventory Trax
 ==============
 
->> Track items in a simple inventory system
+> Track items in a simple inventory system
 
 This is a sample angular application using the following:
 

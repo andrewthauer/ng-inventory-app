@@ -5,25 +5,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routes';
 
-import {
-  appReducer,
-  ItemEffects,
-} from './common/store';
-
-import {
-  ItemPersistenceService,
-  ItemService,
-} from './common/services';
-
-import {
-  HeaderComponent,
-  HeroUnitComponent,
-} from './common/components';
+import { AppCommonModule } from './common';
+import { rootReducer, allEffects } from './common/state';
+import { ItemPersistenceService, ItemService } from './common/services';
+import { HomeComponent } from './home';
 
 import {
   ItemsComponent,
@@ -32,13 +23,9 @@ import {
   QuantityEditorComponent,
 } from './items';
 
-import { HomeComponent } from './home';
-
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    HeroUnitComponent,
     HomeComponent,
     ItemsComponent,
     ItemListComponent,
@@ -48,15 +35,17 @@ import { HomeComponent } from './home';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot(appReducer),
+    StoreModule.forRoot(rootReducer),
+    StoreRouterConnectingModule,
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
-    EffectsModule.forRoot([ItemEffects]),
+    EffectsModule.forRoot(allEffects),
     HttpClientModule,
     routing,
+    AppCommonModule,
   ],
   providers: [
     ItemPersistenceService,
-    ItemService
+    ItemService,
   ],
   bootstrap: [AppComponent]
 })

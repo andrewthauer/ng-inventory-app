@@ -1,12 +1,6 @@
-<header class="mv3">
-  <h2>
-    Items
-    <small class="light-gray">
-      <!-- <i class="fa fa-exclamation-circle" [ngStyle]="{ color: 'red' }" *ngIf="item.quantity === 0"></i>
-      <i class="fa fa-warning" [ngStyle]="{ color: 'orange' }" *ngIf="hasLowStock(item)"></i> -->
-    </small>
-  </h2>
-</header>
+<app-title title="Items">
+  <i class="fa fa-spinner fa-spin" *ngIf="(model | async).isFetching"></i>
+</app-title>
 
 <table class="w-100">
   <thead class="">
@@ -18,7 +12,7 @@
       <td></td>
     </tr>
   </thead>
-  <tbody *ngFor="let item of (items | async)">
+  <tbody *ngFor="let item of (model | async).items">
     <tr class="mv1">
       <td class="flex">
         <span [ngSwitch]="stockLevel(item)" class="pr2 w1">
@@ -48,10 +42,10 @@
   </tbody>
 </table>
 
-<div *ngIf="error | async" class="text-danger well">
+<div *ngIf="(model | async).error" class="text-danger well">
   {{ error | async }}
 </div>
 
 <div class="mv3">
-  <button class="pa2 bg-gray white" (click)="addItem()">Add New</button>
+  <app-button (click)="addItem()" [icon]="'plus'" [text]="'Add New'"></app-button>
 </div>

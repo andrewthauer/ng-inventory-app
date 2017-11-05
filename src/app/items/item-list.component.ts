@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/observable';
 import { Store } from '@ngrx/store';
 
-import { AppState, itemActions } from '../common/store';
+import { Observable, ObservableInput } from 'rxjs/Observable';
+import 'rxjs/add/observable/combineLatest';
+
+import { AppState, itemActions } from '../common/state';
 import { ItemService } from '../common';
 import { Item, StockLevel } from '../common/models';
 
@@ -15,22 +17,15 @@ import { Item, StockLevel } from '../common/models';
 })
 export class ItemListComponent implements OnInit {
   StockLevel = StockLevel;
-
-  items: Observable<Item[]>;
-  error: Observable<Error>;
+  public model;
 
   constructor(
+    private store: Store<AppState>,
     private itemService: ItemService,
   ) { }
 
   ngOnInit() {
-    const result = this.itemService.select();
-    this.items = result.items;
-    this.error = result.error;
-  }
-
-  getItems() {
-    return this.items;
+    this.model = this.itemService.selectAll();
   }
 
   addItem() {
