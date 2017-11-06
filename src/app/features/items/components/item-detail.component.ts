@@ -1,15 +1,17 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { Store } from '@ngrx/store';
 
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
-import { AppState, itemActions, itemSelector} from '../shared/state';
-import { Item } from '../shared/models';
-import { ItemService } from '../shared/services';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store';
+
+import { itemActions, itemSelector} from '../store';
+import { Item } from '../models';
+import { ItemService } from '../services';
 
 @Component({
   selector: 'app-item-detail',
@@ -17,7 +19,7 @@ import { ItemService } from '../shared/services';
     <app-title title="Item Details">
       <i class="fa fa-spinner fa-spin" *ngIf="(isBusy | async)"></i>
     </app-title>
-    <app-item-form [model]="model" (submitted)="submitted($event)" (cancelled)="cancel()"></app-item-form>
+    <app-item-form [model]="model" (onSubmit)="onSubmit($event)" (onCancel)="onCancel()"></app-item-form>
   `
 })
 export class ItemDetailComponent implements OnInit, OnDestroy {
@@ -45,12 +47,12 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  submitted(item) {
+  onSubmit(item) {
     this.itemService.saveItem(item);
     // TODO: What's the best way to navigate back saveItem.done???
   }
 
-  cancel(item) {
+  onCancel() {
     this.navigateToList();
   }
 

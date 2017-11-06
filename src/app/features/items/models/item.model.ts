@@ -6,3 +6,5 @@ export interface Item {
   imageUrl?: string;
   quantity?: number;
 }
+
+export const itemKeySelector = (item: Item) => item.id;

@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
-import { Item } from '../shared/models';
-import { ItemService } from '../shared/services';
+import { Item } from '../models';
 
 @Component({
   selector: 'app-item-form',
@@ -11,8 +9,8 @@ import { ItemService } from '../shared/services';
 export class ItemFormComponent implements OnInit, OnDestroy {
   @Input() model: Item;
   @Output() changed = new EventEmitter<Item>();
-  @Output() submitted = new EventEmitter<Item>();
-  @Output() cancelled = new EventEmitter();
+  @Output() onSubmit = new EventEmitter<Item>();
+  @Output() onCancel = new EventEmitter();
 
   constructor(
   ) { }
@@ -23,10 +21,10 @@ export class ItemFormComponent implements OnInit, OnDestroy {
 
   submit(form: NgForm) {
     const item = form.value;
-    this.submitted.emit(item);
+    this.onSubmit.emit(item);
   }
 
   cancel() {
-    this.cancelled.emit();
+    this.onCancel.emit();
   }
 }

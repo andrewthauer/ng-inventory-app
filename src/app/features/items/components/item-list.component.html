@@ -1,5 +1,10 @@
 <app-title title="Items">
+  &nbsp;
   <i class="fa fa-spinner fa-spin" *ngIf="(model | async)?.isBusy"></i>
+  <small class="red f6" *ngIf="(model | async)?.error" title="{{ (model | async)?.error }}">
+    <i class="fa fa-warning"></i>
+    Error
+  </small>
 </app-title>
 
 <table class="w-100">
@@ -40,10 +45,6 @@
     </tr>
   </tbody>
 </table>
-
-<div *ngIf="(model | async)?.error" class="text-danger well">
-  {{ (model | async)?.error }}
-</div>
 
 <div class="mv3">
   <app-button (click)="addItem()" icon="plus" text="Add New"></app-button>

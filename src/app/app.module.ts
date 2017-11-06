@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 import { StoreModule } from '@ngrx/store';
@@ -11,14 +9,12 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { SharedModule } from './shared';
-import { HomeModule } from './home';
-import { ItemsModule } from './items';
-
-import { routes } from './app.routes';
-import { rootReducer, allEffects } from './shared/state';
-import { ItemPersistenceService, ItemService } from './shared/services';
-
+import { HomeModule } from './features/home';
+import { ItemsModule } from './features/items';
 import { AppComponent } from './app.component';
+
+import { rootReducer, allEffects } from './store';
+import { routes } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -26,21 +22,16 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    EffectsModule.forRoot(allEffects),
+    SharedModule,
     HomeModule,
-    HttpClientModule,
     ItemsModule,
     RouterModule.forRoot(routes),
-    SharedModule,
     StoreModule.forRoot(rootReducer),
     StoreRouterConnectingModule,
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    EffectsModule.forRoot(allEffects),
   ],
-  providers: [
-    ItemPersistenceService,
-    ItemService,
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

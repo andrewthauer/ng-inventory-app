@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import {
-  HeaderComponent,
-} from './layout';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import {
   ButtonComponent,
+  HeaderComponent,
   HeroUnitComponent,
   TitleComponent,
 } from './components';
@@ -22,12 +20,21 @@ import {
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule,
   ],
   exports: [
+    // components
     ButtonComponent,
     HeaderComponent,
     HeroUnitComponent,
     TitleComponent,
+    // modules
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule
   ],
   providers: []
 })
