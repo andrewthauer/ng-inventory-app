@@ -31,4 +31,4 @@ import {
   ],
   providers: []
 })
-export class AppCommonModule { }
+export class SharedModule { }

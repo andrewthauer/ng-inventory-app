@@ -7,12 +7,12 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
-import { AppState, itemActions, itemSelector} from '../common/state';
-import { Item } from '../common/models';
-import { ItemService } from '../common/services';
+import { AppState, itemActions, itemSelector} from '../shared/state';
+import { Item } from '../shared/models';
+import { ItemService } from '../shared/services';
 
 @Component({
-  selector: 'app-item-details',
+  selector: 'app-item-detail',
   template: `
     <app-title title="Item Details">
       <i class="fa fa-spinner fa-spin" *ngIf="(isBusy | async)"></i>
@@ -20,7 +20,7 @@ import { ItemService } from '../common/services';
     <app-item-form [model]="model" (submitted)="submitted($event)" (cancelled)="cancel()"></app-item-form>
   `
 })
-export class ItemDetailsComponent implements OnInit, OnDestroy {
+export class ItemDetailComponent implements OnInit, OnDestroy {
   public model: Item;
   protected isBusy: Observable<Boolean>;
   private subscription: Subscription;

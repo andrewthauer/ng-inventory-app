@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 
-import { Item } from '../common/models';
+import { Item } from '../shared/models';
 
 // TODO: Expose event so parent can update itself
 

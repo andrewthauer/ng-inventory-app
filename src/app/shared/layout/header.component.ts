@@ -4,8 +4,8 @@ import { Component, Input } from '@angular/core';
   selector: 'app-header',
   template: `
   <header class="tc">
-    <a routerLink="/home" class="link">
-      <h1 class="f-headline-s">{{title}}</h1>
+    <a routerLink="/" class="link f-headline-s">
+      <h1>{{title}}</h1>
     </a>
   </header>
   `

@@ -4,9 +4,9 @@ import { Store } from '@ngrx/store';
 import { Observable, ObservableInput } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
 
-import { AppState, itemActions } from '../common/state';
-import { ItemService } from '../common';
-import { Item, StockLevel } from '../common/models';
+import { AppState, itemActions } from '../shared/state';
+import { ItemService } from '../shared';
+import { Item, StockLevel } from '../shared/models';
 
 @Component({
   selector: 'app-item-list',

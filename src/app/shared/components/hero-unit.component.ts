@@ -4,7 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-hero-unit',
   template: `
   <div class="center tc pv5 pv5-ns bg-light-gray">
-    <h1>hero unit ...</h1>
+    <section class="lh-title">
+      <ng-content></ng-content>
+    </section>
   </div>
   `
 })
