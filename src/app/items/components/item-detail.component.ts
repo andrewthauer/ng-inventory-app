@@ -1,17 +1,15 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../store';
+import { AppState } from '../../store';
 
 import { itemActions, itemSelector} from '../store';
-import { Item } from '../models';
-import { ItemService } from '../services';
+import { Item, ItemService } from '../shared';
 
 @Component({
   selector: 'app-item-detail',

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 import { StoreModule } from '@ngrx/store';
@@ -8,13 +7,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { CoreModule } from './core';
 import { SharedModule } from './shared';
-import { HomeModule } from './features/home';
-import { ItemsModule } from './features/items';
-import { AppComponent } from './app.component';
-
+import { HomeModule } from './home';
+import { ItemsModule } from './items';
+import { routes } from './app.routing';
 import { rootReducer, allEffects } from './store';
-import { routes } from './app.routes';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +21,7 @@ import { routes } from './app.routes';
   ],
   imports: [
     BrowserModule,
+    CoreModule,
     SharedModule,
     HomeModule,
     ItemsModule,

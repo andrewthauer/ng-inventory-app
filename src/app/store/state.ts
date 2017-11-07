@@ -1,8 +1,5 @@
 import { UiState, INITIAL_UI_STATE} from './ui-store';
-import { ItemState, INITIAL_ITEM_STATE } from '../features/items/store';
-
-// ----------------------------------------------
-// State
+import { ItemState, INITIAL_ITEM_STATE } from '../items/store';
 
 export interface AppState {
   router: any;

@@ -1,5 +1,5 @@
-import { actionCreatorFactory } from '../../../lib/ngrx-fsa';
-import { Item } from '../models';
+import { actionCreatorFactory } from 'lib/ts-redux-fsa';
+import { Item } from '../shared';
 
 const actionCreator = actionCreatorFactory();
 

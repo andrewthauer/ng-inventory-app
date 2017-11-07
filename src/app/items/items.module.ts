@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from '../../shared';
-import { routes } from './items.routes';
+import { SharedModule } from '../shared';
+import { routes } from './items.routing';
 
 import {
   ItemPersistenceService,
   ItemService,
-} from './services';
+} from './shared';
 
 import {
   ItemsComponent,

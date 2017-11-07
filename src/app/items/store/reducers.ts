@@ -1,17 +1,12 @@
-import { reducerWithInitialState, isType } from '../../../lib/ngrx-fsa';
-import { handleError } from '../../../store/utils';
-import { appError, upsert, remove } from '../../../utils';
-
-import { Item } from '../models';
+import { reducerWithInitialState, isType } from 'lib/ts-redux-fsa';
+import { Item } from '../shared';
 import { ItemState, INITIAL_ITEM_STATE } from './state';
 import { itemActions } from './actions';
+import { upsert, remove } from '../../utils/fp';
 
+const handleError = (state: any, err: Error | any) => ({ ...state, error: err });
 const handleAsyncError = (state, err) => ({ ...handleError(state, err), isBusy: false });
-
-const startAsync = (state, payload: any) => ({
-  ...state,
-  isBusy: true
-});
+const startAsync = (state, payload: any) => ({ ...state, isBusy: true });
 
 const upsertItem = (state, item: Item) => ({
   ...state,

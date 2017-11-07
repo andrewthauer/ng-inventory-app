@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/observable';
-
 import 'rxjs/add/operator/map';
 
-import { Item } from '../models';
+import { Item } from './item.model';
 
 const BASE_URL = 'http://localhost:3000';
 

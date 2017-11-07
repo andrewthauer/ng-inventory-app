@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Observable, ObservableInput } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
 
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../store';
+import { AppState } from '../../store';
 
+import { Item, ItemService, StockLevel } from '../shared';
 import { itemActions } from '../store';
-import { ItemService } from '../services';
-import { Item, StockLevel } from '../models';
 
 @Component({
   selector: 'app-item-list',

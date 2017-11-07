@@ -1,2 +1,2 @@
-export * from './functions';
-export * from './errors';
+export * from './fp';
+export * from './app-error';

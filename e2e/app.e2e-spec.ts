@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('inventory-app', () => {
+describe('app', () => {
   let page: AppPage;
 
   beforeEach(() => {

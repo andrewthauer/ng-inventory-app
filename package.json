@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve & json-server --watch db.json",
+    "start": "npm run server & ng serve",
+    "server": "json-server --watch db.json",
+    "serve": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -13,7 +15,6 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^5.0.0",
-    "@angular/cdk": "^2.0.0-beta.12",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
     "@angular/core": "^5.0.0",
@@ -29,7 +30,6 @@
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "json-server": "^0.12.1",
-    "ngrx-store-fsa-helpers": "^1.0.0",
     "ramda": "^0.25.0",
     "rxjs": "^5.5.2",
     "tachyons": "^4.9.0",
@@ -41,7 +41,6 @@
     "@angular/language-service": "^5.0.0",
     "@types/jasmine": "~2.6.2",
     "@types/jasminewd2": "~2.0.2",
-    "@types/jquery": "^3.2.16",
     "@types/node": "~8.0.47",
     "@types/ramda": "^0.25.0",
     "codelyzer": "~4.0.0",
@@ -56,6 +55,6 @@
     "protractor": "~5.2.0",
     "ts-node": "~3.3.0",
     "tslint": "~5.8.0",
-    "typescript": "~2.6.1"
+    "typescript": "~2.4.2"
   }
 }

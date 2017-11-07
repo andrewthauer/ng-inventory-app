@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 
 import {
   ButtonComponent,
-  HeaderComponent,
   HeroUnitComponent,
   TitleComponent,
 } from './components';
@@ -14,7 +13,6 @@ import {
 @NgModule({
   declarations: [
     ButtonComponent,
-    HeaderComponent,
     HeroUnitComponent,
     TitleComponent,
   ],
@@ -27,7 +25,6 @@ import {
   exports: [
     // components
     ButtonComponent,
-    HeaderComponent,
     HeroUnitComponent,
     TitleComponent,
     // modules

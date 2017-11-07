@@ -1,4 +1,4 @@
-import { ItemEffects } from '../features/items/store';
+import { ItemEffects } from '../items/store';
 
 export const allEffects = [
   ItemEffects

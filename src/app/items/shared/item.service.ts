@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { compose, filter, head, ifElse, pipe } from 'ramda';
-
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/first';
 
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../store';
+import { AppState } from '../../store';
 
-import { Item, itemKeySelector } from '../models';
-import { itemActions } from '../store/actions';
+import { Item, itemKeySelector } from './item.model';
 import { ItemPersistenceService } from './item-persistence.service';
+import { itemActions } from '../store/actions';
 
 const buildItem = (code = 'NEW', name = 'New Item', description = ''): Item => {
   return { code, name, description, quantity: 0 };

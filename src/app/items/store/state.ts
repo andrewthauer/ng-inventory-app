@@ -1,4 +1,4 @@
-import { Item } from '../models';
+import { Item } from '../shared';
 
 export interface ItemState {
   items: Item[];

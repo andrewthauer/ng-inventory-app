@@ -1,5 +1,5 @@
 import { Action, createSelector } from '@ngrx/store';
-import { ItemState, itemActions } from '../features/items/store';
+import { ItemState, itemActions } from '../items/store';
 
 export interface UiState {
   selectedItemId: number;
