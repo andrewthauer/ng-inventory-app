@@ -17,18 +17,11 @@ import {
 } from './components';
 
 @NgModule({
-  declarations: [
-    ItemsComponent,
-    ItemFormComponent,
-    ItemListComponent,
-    ItemDetailComponent,
-    QuantityEditorComponent,
-  ],
   imports: [
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  exports: [
+  declarations: [
     ItemsComponent,
     ItemFormComponent,
     ItemListComponent,
@@ -38,6 +31,13 @@ import {
   providers: [
     ItemPersistenceService,
     ItemService,
+  ],
+  exports: [
+    ItemsComponent,
+    ItemFormComponent,
+    ItemListComponent,
+    ItemDetailComponent,
+    QuantityEditorComponent,
   ]
 })
 export class ItemsModule { }

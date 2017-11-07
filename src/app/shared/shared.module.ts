@@ -6,33 +6,29 @@ import { RouterModule } from '@angular/router';
 
 import {
   ButtonComponent,
-  HeroUnitComponent,
   TitleComponent,
 } from './components';
 
 @NgModule({
-  declarations: [
-    ButtonComponent,
-    HeroUnitComponent,
-    TitleComponent,
-  ],
   imports: [
     CommonModule,
     FormsModule,
     HttpClientModule,
     RouterModule,
   ],
+  declarations: [
+    ButtonComponent,
+    TitleComponent,
+  ],
   exports: [
     // components
     ButtonComponent,
-    HeroUnitComponent,
     TitleComponent,
     // modules
     CommonModule,
     FormsModule,
     HttpClientModule,
     RouterModule
-  ],
-  providers: []
+  ]
 })
 export class SharedModule { }

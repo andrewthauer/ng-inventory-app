@@ -1,28 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 
-import { CoreModule } from './core';
-import { StoreModule } from './store';
-import { SharedModule } from './shared';
-import { HomeModule } from './home';
-import { ItemsModule } from './items';
-import { routes } from './app.routing';
-
+import { AppRoutingModule } from './app-routing.module';
+import { AppStoreModule } from './store';
 import { AppComponent } from './app.component';
 
+import { CoreModule } from './core';
+import { SharedModule } from './shared';
+
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
   imports: [
     BrowserModule,
     CoreModule,
-    RouterModule.forRoot(routes),
-    StoreModule,
-    SharedModule,
-    HomeModule,
-    ItemsModule,
+    AppRoutingModule,
+    AppStoreModule,
+  ],
+  declarations: [
+    AppComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
