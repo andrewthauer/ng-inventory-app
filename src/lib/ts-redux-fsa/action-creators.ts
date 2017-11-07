@@ -47,12 +47,7 @@ export interface AsyncActionCreators<P, S, E> {
 
 export interface ActionCreatorFactory {
   (type: string, commonMeta?: Meta, error?: boolean): EmptyActionCreator;
-  <P>(type: string, commonMeta?: Meta, isError?: boolean): ActionCreator<P>;
-  <P>(
-    type: string,
-    commonMeta?: Meta,
-    isError?: (payload: P) => boolean
-  ): ActionCreator<P>;
+  <P>(type: string, commonMeta?: Meta, isError?: boolean | ((payload: P) => boolean)): ActionCreator<P>;
 
   async<P, S>(type: string, commonMeta?: Meta): AsyncActionCreators<P, S, any>;
   async<P, S, E>(type: string, commonMeta?: Meta): AsyncActionCreators<P, S, E>;
@@ -70,7 +65,7 @@ export function actionCreatorFactory(
 ): ActionCreatorFactory {
   const actionTypes: { [type: string]: boolean } = {};
 
-  const base = prefix ? `${prefix}/` : "";
+  const base = prefix ? `${prefix}/` : '';
 
   function actionCreator<P>(
     type: string,
@@ -79,9 +74,10 @@ export function actionCreatorFactory(
   ): ActionCreator<P> {
     const fullType = base + type;
 
-    if (process.env.NODE_ENV !== "production") {
-      if (actionTypes[fullType])
+    if (process.env.NODE_ENV !== 'production') {
+      if (actionTypes[fullType]) {
         throw new Error(`Duplicate action type: ${fullType}`);
+      }
 
       actionTypes[fullType] = true;
     }
@@ -97,7 +93,7 @@ export function actionCreatorFactory(
           action.meta = Object.assign({}, commonMeta, meta);
         }
 
-        if (isError && (typeof isError === "boolean" || isError(payload))) {
+        if (isError && (typeof isError === 'boolean' || isError(payload))) {
           action.error = true;
         }
 

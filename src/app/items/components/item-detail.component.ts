@@ -8,7 +8,7 @@ import 'rxjs/add/observable/of';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store';
 
-import { itemActions, itemSelector} from '../store';
+import { itemActions, itemByIdSelector } from '../store';
 import { Item, ItemService } from '../shared';
 
 @Component({
@@ -33,7 +33,7 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.isBusy = this.store.select(state => state.data.items.isBusy);
+    this.isBusy = this.store.select(state => state.items.isBusy);
 
     this.subscription = this.route.params.subscribe(p => {
       this.itemService.selectOne(+p.id)

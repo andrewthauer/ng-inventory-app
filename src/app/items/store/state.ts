@@ -6,7 +6,7 @@ export interface ItemState {
   isBusy: boolean;
 }
 
-export const INITIAL_ITEM_STATE: ItemState = {
+export const itemsInitialState: ItemState = {
   items: [],
   error: null,
   isBusy: false

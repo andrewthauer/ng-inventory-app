@@ -1,6 +1,6 @@
 // Based On: https://github.com/dphilipson/typescript-fsa-reducers
 
-import { FsaAction, ActionCreator, AnyAction, isType } from "./action-creators";
+import { FsaAction, ActionCreator, AnyAction, isType } from './action-creators';
 
 export interface ReducerBuilder<InS extends OutS, OutS> {
   case<P>(

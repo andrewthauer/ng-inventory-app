@@ -26,9 +26,9 @@ export class ItemService {
   selectAll() {
     this.fetchItems();
     return Observable.combineLatest(
-      this.store.select(state => state.data.items.items),
-      this.store.select(state => state.data.items.error),
-      this.store.select(state => state.data.items.isBusy),
+      this.store.select(state => state.items.items),
+      this.store.select(state => state.items.error),
+      this.store.select(state => state.items.isBusy),
       (items, error, isBusy) => {
         return { items, error, isBusy };
       }
@@ -39,12 +39,12 @@ export class ItemService {
     this.store.dispatch(itemActions.selectItem(id));
     this.fetchItem(id);
 
-    const itemSelector = this.store.select(state => state.data.items.items)
+    const itemSelector = this.store.select(state => state.items.items)
       .map(items => head(items.filter(i => i.id === id)));
 
     // const itemPredicate = (key: number) => (item: Item) => itemKeySelector(item) === key;
     // const itemSelector = this.store
-    //   .select(state => state.data.items.items)
+    //   .select(state => state.items.items)
     //   .map();
 
     // const i: Item = <Item>{};
@@ -54,8 +54,8 @@ export class ItemService {
 
     return Observable.combineLatest(
       itemSelector,
-      this.store.select(state => state.data.items.error),
-      this.store.select(state => state.data.items.isBusy),
+      this.store.select(state => state.items.error),
+      this.store.select(state => state.items.isBusy),
       (item, error, isBusy) => ({ item, error, isBusy })
     );
   }

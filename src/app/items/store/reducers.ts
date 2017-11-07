@@ -1,8 +1,8 @@
-import { reducerWithInitialState, isType } from 'lib/ts-redux-fsa';
-import { Item } from '../shared';
-import { ItemState, INITIAL_ITEM_STATE } from './state';
-import { itemActions } from './actions';
+import { reducerWithInitialState, isType } from '../../../lib/ts-redux-fsa';
 import { upsert, remove } from '../../utils/fp';
+import { Item } from '../shared';
+import { ItemState, itemsInitialState } from './state';
+import { itemActions } from './actions';
 
 const handleError = (state: any, err: Error | any) => ({ ...state, error: err });
 const handleAsyncError = (state, err) => ({ ...handleError(state, err), isBusy: false });
@@ -20,26 +20,28 @@ const removeItem = (state, item: Item) => ({
   isBusy: false
 });
 
-const reducer = reducerWithInitialState(INITIAL_ITEM_STATE)
+export const itemsReducer = reducerWithInitialState(itemsInitialState)
   // started
-  .case(itemActions.loadItems.started, startAsync)
-  .case(itemActions.loadItem.started, startAsync)
-  .case(itemActions.addItem.started, startAsync)
-  .case(itemActions.saveItem.started, startAsync)
-  .case(itemActions.deleteItem.started, startAsync)
+  .cases([
+    itemActions.loadItems.started,
+    itemActions.loadItem.started,
+    itemActions.addItem.started,
+    itemActions.saveItem.started,
+    itemActions.deleteItem.started,
+  ], startAsync)
   // done
   .case(itemActions.loadItems.done, (state, items) => ({ ...state, items, isBusy: false }))
-  .case(itemActions.loadItem.done, upsertItem)
-  .case(itemActions.addItem.done, upsertItem)
-  .case(itemActions.saveItem.done, upsertItem)
+  .cases([
+    itemActions.loadItem.done,
+    itemActions.addItem.done,
+    itemActions.saveItem.done,
+  ], upsertItem)
   .case(itemActions.deleteItem.done, removeItem)
   // failed
-  .case(itemActions.loadItems.failed, handleAsyncError)
-  .case(itemActions.loadItem.failed, handleAsyncError)
-  .case(itemActions.addItem.failed, handleError)
-  .case(itemActions.deleteItem.failed, handleError)
+  .cases([
+    itemActions.loadItems.failed,
+    itemActions.loadItem.failed,
+    itemActions.addItem.failed,
+    itemActions.deleteItem.failed,
+    ], handleAsyncError)
   ;
-
-export function itemsReducer(state: ItemState = INITIAL_ITEM_STATE, action) {
-  return reducer(state, action);
-}

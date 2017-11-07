@@ -5,7 +5,7 @@ import 'rxjs/add/observable/combineLatest';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store';
 
-import { Item, ItemService, StockLevel } from '../shared';
+import { Item, ItemService, StockLevel, calcStockLevel } from '../shared';
 import { itemActions } from '../store';
 
 @Component({
@@ -36,16 +36,8 @@ export class ItemListComponent implements OnInit {
     this.itemService.deleteItem(item);
   }
 
-  stockLevel(item: Item): StockLevel {
-    if (item.quantity === 0) {
-      return StockLevel.out;
-    } else if (item.quantity <= 2) {
-      return StockLevel.low;
-    } else if (item.quantity >= 100) {
-      return StockLevel.overstock;
-    } else {
-      return StockLevel.ok;
-    }
+  stockLevel(item: Item) {
+    return calcStockLevel(item);
   }
 
   hasLowStock(item: Item): boolean {
@@ -57,8 +49,9 @@ export class ItemListComponent implements OnInit {
   }
 
   quantityChanged(item, newQuantity) {
-    console.log(`Quantity changed: ${newQuantity}`);
-    const updatedItem = { ...item, quantity: newQuantity };
-    this.itemService.saveItem(item);
+    this.itemService.saveItem({
+      ...item,
+      quantity: newQuantity
+    });
   }
 }

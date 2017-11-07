@@ -1,12 +1,34 @@
-import * as R from 'ramda';
+import {
+  any
+} from 'ramda';
 
-export function upsert<T>(keySelector: (a: T) => any, item: T, list: Array<T>): Array<T> {
+/**
+ * Insert or updates an item in an list based on the key selector comparer
+ *
+ * @export
+ * @template T
+ * @param {(i: T) => any} keySelector A function that returns the unique key for each item
+ * @param {T} item The item to search for
+ * @param {Array<T>} list The list of items
+ * @returns {Array<T>} An new list with the new or updated item
+ */
+export function upsert<T>(keySelector: (i: T) => any, item: T, list: Array<T>): Array<T> {
   const items = [...list.map(i => keySelector(i) === keySelector(item) ? item : i)];
-  const result = !R.any(i => keySelector(i) === keySelector(item), items) ? [...items, item] : items;
+  const result = !any(i => keySelector(i) === keySelector(item), items) ? [...items, item] : items;
   return result;
 }
 
-export function remove<T>(keySelector: (a: T) => any, item: T, list: Array<T>): Array<T> {
+/**
+ * Removes an item in a list based on the key selector comparer
+ *
+ * @export
+ * @template T
+ * @param {(i: T) => any} keySelector A function that returns the unique key for each item
+ * @param {T} item The item to search for
+ * @param {Array<T>} list The list of items
+ * @returns {Array<T>} An new list without the item (if found)
+ */
+export function remove<T>(keySelector: (i: T) => any, item: T, list: Array<T>): Array<T> {
   const result = [...list.filter(i => keySelector(i) !== keySelector(item))];
   return result;
 }

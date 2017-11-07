@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import { FsaAction } from 'lib/ts-redux-fsa';
+import { FsaAction } from '../../../lib/ts-redux-fsa';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/switchMap';
 
-import { AppError } from '../../utils';
+import { AppError } from '../../core';
 import { Item, ItemPersistenceService } from '../shared';
 import { itemActions } from './actions';
 

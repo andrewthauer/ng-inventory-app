@@ -5,7 +5,7 @@ export interface UiState {
   selectedItemId: number;
 }
 
-export const INITIAL_UI_STATE: UiState = {
+export const uiInitialState: UiState = {
   selectedItemId: null
 };
 
@@ -20,7 +20,7 @@ const selectItemId = (state, action) => {
   return { ...state, selectedItemId: action.payload };
 };
 
-export const uiReducer = (state = INITIAL_UI_STATE, action) => {
+export const uiReducer = (state = uiInitialState, action) => {
   switch (true) {
     case (action.type === itemActions.selectItem.type):
       return selectItemId(state, action);

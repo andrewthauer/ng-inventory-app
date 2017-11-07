@@ -1,4 +1,4 @@
-import { actionCreatorFactory } from 'lib/ts-redux-fsa';
+import { actionCreatorFactory } from '../../../lib/ts-redux-fsa';
 import { Item } from '../shared';
 
 const actionCreator = actionCreatorFactory();
