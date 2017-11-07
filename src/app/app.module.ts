@@ -5,8 +5,7 @@ import { AppConfigToken, buildAppConfig } from './app.config';
 import { AppRoutingModule } from './app-routing.module';
 import { AppStoreModule } from './store';
 import { AppComponent } from './app.component';
-
-import { CoreModule } from './core';
+import { CoreModule, LoggerToken } from './core';
 import { SharedModule } from './shared';
 
 @NgModule({
@@ -20,6 +19,7 @@ import { SharedModule } from './shared';
     AppComponent,
   ],
   providers: [
+    { provide: LoggerToken, useValue: console },
     { provide: AppConfigToken, useValue: buildAppConfig() },
   ],
   bootstrap: [AppComponent]
