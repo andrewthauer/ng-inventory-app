@@ -30,7 +30,7 @@
         <a [routerLink]="['/items', item.id]">{{ item.code }}</a>
       </td>
       <td>{{ item.name }}</td>
-      <td>{{ item.description }}</td>
+      <td>{{ item.description | truncate:40 }}</td>
       <td>
         {{ (item.quantity || 0) | number }}
       </td>

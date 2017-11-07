@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { TruncatePipe } from './truncate.pipe';
+
 import {
   ButtonComponent,
   TitleComponent,
@@ -17,18 +19,23 @@ import {
     RouterModule,
   ],
   declarations: [
+    // components
     ButtonComponent,
     TitleComponent,
+    // pipes
+    TruncatePipe,
   ],
   exports: [
     // components
     ButtonComponent,
     TitleComponent,
+    // pipes
+    TruncatePipe,
     // modules
     CommonModule,
     FormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
   ]
 })
 export class SharedModule { }
