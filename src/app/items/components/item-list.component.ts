@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, ObservableInput } from 'rxjs/Observable';
-import 'rxjs/add/observable/combineLatest';
+import { ifElse, identity } from 'ramda';
 
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store';
 
+import { ModalService } from '../../core/modal.service';
 import { Item, ItemService, StockLevel, calcStockLevel } from '../shared';
 import { itemActions } from '../store';
 
@@ -22,6 +22,7 @@ export class ItemListComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private itemService: ItemService,
+    private modal: ModalService
   ) { }
 
   ngOnInit() {
@@ -33,7 +34,11 @@ export class ItemListComponent implements OnInit {
   }
 
   deleteItem(item: Item) {
-    this.itemService.deleteItem(item);
+    this.modal.confirm('Are you sure?')
+      .subscribe(ifElse(identity,
+        () => this.itemService.deleteItem(item),
+        () => false
+      ));
   }
 
   stockLevel(item: Item) {

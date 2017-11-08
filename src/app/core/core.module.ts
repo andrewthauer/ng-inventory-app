@@ -2,7 +2,12 @@ import { NgModule, ModuleWithProviders, Optional, SkipSelf, Inject } from '@angu
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { Logger, LoggerToken, LoggerLike } from './logger';
+import { ModalModule } from 'ngx-modialog';
+import { JSNativeModalModule } from 'ngx-modialog/plugins/js-native';
+
+import { Logger, LoggerToken, LoggerLike } from './logger.service';
+import { ModalService } from './modal.service';
+import { ToastService } from './toast.service';
 import { HeaderComponent } from './header.component';
 import { NotFoundComponent } from './not-found.component';
 
@@ -12,13 +17,17 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
   imports: [
     CommonModule,
     RouterModule,
+    ModalModule.forRoot(),
+    JSNativeModalModule,
   ],
   declarations: [
     HeaderComponent,
     NotFoundComponent,
   ],
   providers: [
-    Logger
+    Logger,
+    ModalService,
+    ToastService,
   ],
   exports: [
     HeaderComponent,

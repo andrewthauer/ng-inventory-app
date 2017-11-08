@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { HoverStyleDirective } from './hover-style.directive';
+import { DelayDirective } from './delay.directive';
 import { TruncatePipe } from './truncate.pipe';
 
 import {
@@ -22,6 +24,9 @@ import {
     // components
     ButtonComponent,
     TitleComponent,
+    // directives
+    DelayDirective,
+    HoverStyleDirective,
     // pipes
     TruncatePipe,
   ],
@@ -29,6 +34,9 @@ import {
     // components
     ButtonComponent,
     TitleComponent,
+    // directives
+    DelayDirective,
+    HoverStyleDirective,
     // pipes
     TruncatePipe,
     // modules
