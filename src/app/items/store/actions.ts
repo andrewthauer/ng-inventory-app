@@ -1,18 +1,14 @@
 import { actionCreatorFactory } from '../../../lib/ts-redux-fsa';
-import { Item } from '../shared';
+import { Item, ItemFilters } from '../shared';
 
 const actionCreator = actionCreatorFactory();
 
-export interface LoadItemsOptions {
-  searchText?: string;
-}
-
 export const itemActions = {
-  setItemsFilter: actionCreator<string>('SET_ITEMS_FILTER'),
-  selectItem: actionCreator<number>('SELECT_ITEM'),
-  loadItems: actionCreator.async<LoadItemsOptions | string | void, Item[], Error>('LOAD_ITEMS'),
-  loadItem: actionCreator.async<number, Item, Error>('LOAD_ITEM'),
-  addItem: actionCreator.async<Item, Item, Error>('ADD_ITEM'),
-  saveItem: actionCreator.async<Item, Item, Error>('SAVE_ITEM'),
-  deleteItem: actionCreator.async<Item, Item, Error>('DELETE_ITEM')
+  setFilters: actionCreator<ItemFilters>('SET_ITEMS_FILTER'),
+  selectOne: actionCreator<number>('SELECT_ONE_ITEM'),
+  loadAll: actionCreator.async<ItemFilters | void, Item[], Error>('LOAD_ALL_ITEMS'),
+  loadOne: actionCreator.async<number, Item, Error>('LOAD_ONE_ITEM'),
+  addOne: actionCreator.async<Item, Item, Error>('ADD_ONE_ITEM'),
+  saveOne: actionCreator.async<Item, Item, Error>('SAVE_ONE_ITEM'),
+  removeOne: actionCreator.async<Item, Item, Error>('DELETE_ONE_ITEM')
 };

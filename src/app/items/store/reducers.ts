@@ -24,26 +24,26 @@ const removeItem = (state, item: Item) => ({
 });
 
 export const itemsReducer = reducerWithInitialState(itemsInitialState)
-  .case(itemActions.setItemsFilter, (state, text) => ({ ...state, filter: text }))
-  .case(itemActions.selectItem, selectItemId)
+  .case(itemActions.setFilters, (state, text) => ({ ...state, filter: text }))
+  .case(itemActions.selectOne, selectItemId)
   .cases([
-    itemActions.loadItems.started,
-    itemActions.loadItem.started,
-    itemActions.addItem.started,
-    itemActions.saveItem.started,
-    itemActions.deleteItem.started,
+    itemActions.loadAll.started,
+    itemActions.loadOne.started,
+    itemActions.addOne.started,
+    itemActions.saveOne.started,
+    itemActions.removeOne.started,
   ], startAsync)
-  .case(itemActions.loadItems.done, (state, items) => ({ ...state, items, isBusy: false }))
+  .case(itemActions.loadAll.done, (state, items) => ({ ...state, items, isBusy: false }))
   .cases([
-    itemActions.loadItem.done,
-    itemActions.addItem.done,
-    itemActions.saveItem.done,
+    itemActions.loadOne.done,
+    itemActions.addOne.done,
+    itemActions.saveOne.done,
   ], upsertItem)
-  .case(itemActions.deleteItem.done, removeItem)
+  .case(itemActions.removeOne.done, removeItem)
   .cases([
-    itemActions.loadItems.failed,
-    itemActions.loadItem.failed,
-    itemActions.addItem.failed,
-    itemActions.deleteItem.failed,
+    itemActions.loadOne.failed,
+    itemActions.loadOne.failed,
+    itemActions.addOne.failed,
+    itemActions.removeOne.failed,
     ], handleAsyncError)
   ;

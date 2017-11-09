@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 
 import { AppConfigToken, AppConfig } from '../../app.config';
 import { Item } from './item.model';
+import { ItemFilters } from './item-filters.model';
 
 @Injectable()
 export class ItemPersistenceService {
@@ -17,12 +18,9 @@ export class ItemPersistenceService {
     this.serviceUrl = appConfig.serviceUrl;
   }
 
-  getItems(searchText?: string) {
-    if (searchText) {
-      return this.http.get<Item[]>(`${this.serviceUrl}/items/?name_like=${searchText}`);
-    } else {
-      return this.http.get<Item[]>(`${this.serviceUrl}/items/`);
-    }
+  getItems(filters?: ItemFilters) {
+    const query = filters ? `?q=${filters.searchText}` : '';
+    return this.http.get<Item[]>(`${this.serviceUrl}/items/${query}`);
   }
 
   getItem(id: number) {
@@ -30,11 +28,8 @@ export class ItemPersistenceService {
   }
 
   saveItem(item: Item): Observable<Item> {
-    if (item.id >= 1) {
-      return this.http.put<Item>(`${this.serviceUrl}/items/${item.id}`, item);
-    } else {
-      return this.http.post<Item>(`${this.serviceUrl}/items/`, item);
-    }
+    const id = item.id >= 1 ? `${item.id}` : '';
+    return this.http.put<Item>(`${this.serviceUrl}/items/${id}`, item);
   }
 
   deleteItem(item: Item): Observable<Item> {

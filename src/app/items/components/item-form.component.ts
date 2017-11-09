@@ -13,8 +13,7 @@ export class ItemFormComponent implements OnInit, OnDestroy {
   @Output() onSubmit = new EventEmitter<Item>();
   @Output() onCancel = new EventEmitter();
 
-  constructor(
-  ) { }
+  constructor() { }
 
   ngOnInit() { }
 

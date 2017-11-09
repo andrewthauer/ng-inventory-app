@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store';
 
 import { ModalService } from '../../core/modal.service';
-import { Item, ItemService, StockLevel, calcStockLevel } from '../shared';
+import { Item, ItemService, StockLevel, calcStockLevel, ItemFilters } from '../shared';
 import { itemActions } from '../store';
 
 @Component({
@@ -29,7 +29,7 @@ export class ItemListComponent implements OnInit {
 
   ngOnInit() {
     this.searchText = '';
-    this.model = this.itemService.selectAll();
+    this.model = this.itemService.loadAndSelectAll();
   }
 
   addItem() {
@@ -39,7 +39,7 @@ export class ItemListComponent implements OnInit {
   deleteItem(item: Item) {
     this.modal.confirm('Are you sure?')
       .subscribe(ifElse(identity,
-        () => this.store.dispatch(itemActions.deleteItem.started(item)),
+        () => this.itemService.removeItem(item),
         () => false
       ));
   }
@@ -48,11 +48,12 @@ export class ItemListComponent implements OnInit {
     return calcStockLevel(item);
   }
 
-  onFilterChanged(text) {
-    this.store.dispatch(itemActions.setItemsFilter(text));
+  onFilterChanged(searchText) {
+    const filters: ItemFilters = { searchText };
+    this.store.dispatch(itemActions.setFilters(filters));
   }
 
   quantityChanged(item) {
-    this.store.dispatch(itemActions.saveItem.started(item));
+    this.itemService.saveItem(item);
   }
 }

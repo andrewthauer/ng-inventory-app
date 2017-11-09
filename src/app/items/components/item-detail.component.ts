@@ -36,7 +36,7 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
     this.isBusy = this.store.select(state => state.items.isBusy);
 
     this.subscription = this.route.params.subscribe(p => {
-      this.itemService.selectOne(+p.id)
+      this.itemService.loadAndSelectOne(+p.id)
         .subscribe(i => this.model = i.item);
     });
   }
@@ -47,7 +47,7 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
 
   onSubmit(item) {
     this.itemService.saveItem(item);
-    // TODO: What's the best way to navigate back saveItem.done???
+    // TODO: Update effect and router state to navigate back to the list page
   }
 
   onCancel() {

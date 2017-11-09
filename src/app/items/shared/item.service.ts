@@ -23,8 +23,9 @@ export class ItemService {
     private store: Store<AppState>,
   ) { }
 
-  selectAll() {
-    this.fetchItems();
+  loadAndSelectAll() {
+    this.store.dispatch(itemActions.loadAll.started());
+
     return Observable.combineLatest(
       this.store.select(state => state.items.items),
       this.store.select(state => state.items.error),
@@ -35,9 +36,9 @@ export class ItemService {
     );
   }
 
-  selectOne(id: number = null) {
-    this.store.dispatch(itemActions.selectItem(id));
-    this.fetchItem(id);
+  loadAndSelectOne(id: number = null) {
+    this.store.dispatch(itemActions.selectOne(id));
+    this.store.dispatch(itemActions.loadOne.started(id));
 
     const itemSelector = this.store.select(state => state.items.items)
       .map(items => head(items.filter(i => i.id === id)));
@@ -62,22 +63,14 @@ export class ItemService {
 
   addItem(item: Item = null) {
     const newItem = item || buildItem();
-    this.store.dispatch(itemActions.addItem.started(newItem));
+    this.store.dispatch(itemActions.addOne.started(newItem));
   }
 
   saveItem(item: Item) {
-    this.store.dispatch(itemActions.saveItem.started(item));
+    this.store.dispatch(itemActions.saveOne.started(item));
   }
 
-  deleteItem(item: Item) {
-    this.store.dispatch(itemActions.deleteItem.started(item));
-  }
-
-  private fetchItems(searchText?: string) {
-    this.store.dispatch(itemActions.loadItems.started());
-  }
-
-  private fetchItem(id: number) {
-    this.store.dispatch(itemActions.loadItem.started(id));
+  removeItem(item: Item) {
+    this.store.dispatch(itemActions.removeOne.started(item));
   }
 }
