@@ -3,11 +3,6 @@
     <!-- id -->
     <input id="id" name="id" type="hidden" [ngModel]="model.id" />
 
-    <!-- code -->
-    <label for="code" class="f6 b db mb2">Code <span class="red" *ngIf="code.invalid">(required)</span></label>
-    <input id="code" name="code" #code="ngModel" class="input-reset ba b--black-20 pa2 mb3 db w-100"
-      type="text" required [ngModel]="model.code" />
-
     <!-- name -->
     <label for="name" class="f6 b db mb2">Name <span class="red" *ngIf="name.invalid">(required)</span></label>
     <input id="name" name="name" #name="ngModel" class="input-reset ba b--black-20 pa2 mb3 db w-100"
@@ -24,11 +19,16 @@
     <input id="imageUrl" name="imageUrl" #imageUrl="ngModel" class="input-reset ba b--black-20 pa2 mb3 db w-100"
       type="text" [ngModel]="model.imageUrl" />
 
+    <!-- minimumQuantity -->
+    <label for="minimumQuantity" class="f6 b db mb2">Min Quantity</label>
+    <input id="minimumQuantity" name="minimumQuantity" #quantity="ngModel" class="input-reset ba b--black-20 pa2 mb3 db w-100"
+      type="number" [ngModel]="model.minimumQuantity" />
+
     <!-- quantity -->
     <label for="quantity" class="f6 b db mb2">Quantity</label>
     <input id="quantity" name="quantity" #quantity="ngModel" class="input-reset ba b--black-20 pa2 mb3 db w-100"
       type="number" [ngModel]="model.quantity" />
-  </div>
+    </div>
 
   <div class="pv2">
     <app-button text="Save" type="submit"></app-button>

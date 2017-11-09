@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ifElse, identity } from 'ramda';
 
 import { Store } from '@ngrx/store';
@@ -17,6 +17,8 @@ import { itemActions } from '../store';
 })
 export class ItemListComponent implements OnInit {
   StockLevel = StockLevel;
+
+  @Input() searchText: string;
   public model;
 
   constructor(
@@ -26,6 +28,7 @@ export class ItemListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.searchText = '';
     this.model = this.itemService.selectAll();
   }
 
@@ -36,7 +39,7 @@ export class ItemListComponent implements OnInit {
   deleteItem(item: Item) {
     this.modal.confirm('Are you sure?')
       .subscribe(ifElse(identity,
-        () => this.itemService.deleteItem(item),
+        () => this.store.dispatch(itemActions.deleteItem.started(item)),
         () => false
       ));
   }
@@ -45,18 +48,11 @@ export class ItemListComponent implements OnInit {
     return calcStockLevel(item);
   }
 
-  hasLowStock(item: Item): boolean {
-    return item.quantity <= 1;
+  onFilterChanged(text) {
+    this.store.dispatch(itemActions.setItemsFilter(text));
   }
 
-  hasAnyLowStock() {
-    return false;
-  }
-
-  quantityChanged(item, newQuantity) {
-    this.itemService.saveItem({
-      ...item,
-      quantity: newQuantity
-    });
+  quantityChanged(item) {
+    this.store.dispatch(itemActions.saveItem.started(item));
   }
 }

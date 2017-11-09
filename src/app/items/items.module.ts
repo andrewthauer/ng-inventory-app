@@ -11,6 +11,7 @@ import {
 import {
   ItemsComponent,
   ItemFormComponent,
+  ItemFilterComponent,
   ItemListComponent,
   ItemDetailComponent,
   QuantityEditorComponent
@@ -24,6 +25,7 @@ import {
   declarations: [
     ItemsComponent,
     ItemFormComponent,
+    ItemFilterComponent,
     ItemListComponent,
     ItemDetailComponent,
     QuantityEditorComponent,
@@ -35,6 +37,7 @@ import {
   exports: [
     ItemsComponent,
     ItemFormComponent,
+    ItemFilterComponent,
     ItemListComponent,
     ItemDetailComponent,
     QuantityEditorComponent,

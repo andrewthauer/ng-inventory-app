@@ -17,8 +17,12 @@ export class ItemPersistenceService {
     this.serviceUrl = appConfig.serviceUrl;
   }
 
-  getItems() {
-    return this.http.get<Item[]>(`${this.serviceUrl}/items/`);
+  getItems(searchText?: string) {
+    if (searchText) {
+      return this.http.get<Item[]>(`${this.serviceUrl}/items/?name_like=${searchText}`);
+    } else {
+      return this.http.get<Item[]>(`${this.serviceUrl}/items/`);
+    }
   }
 
   getItem(id: number) {

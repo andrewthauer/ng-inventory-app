@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { HoverStyleDirective } from './hover-style.directive';
 import { DelayDirective } from './delay.directive';
-import { TruncatePipe } from './truncate.pipe';
+import { EllipsePipe } from './ellipse.pipe';
 
 import {
   ButtonComponent,
@@ -28,7 +28,7 @@ import {
     DelayDirective,
     HoverStyleDirective,
     // pipes
-    TruncatePipe,
+    EllipsePipe,
   ],
   exports: [
     // components
@@ -38,7 +38,7 @@ import {
     DelayDirective,
     HoverStyleDirective,
     // pipes
-    TruncatePipe,
+    EllipsePipe,
     // modules
     CommonModule,
     FormsModule,

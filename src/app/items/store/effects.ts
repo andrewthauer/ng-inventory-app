@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -16,7 +17,7 @@ import { itemActions } from './actions';
 import { AppError } from '../../core';
 import { ToastService } from '../../core/toast.service';
 
-const DELAY_SIMULATION = 500;
+const DELAY_SIMULATION = 250;
 
 @Injectable()
 export class ItemEffects {
@@ -27,9 +28,17 @@ export class ItemEffects {
   ) { }
 
   @Effect()
+  setItemsFilter$ = this.actions$
+    .ofType<FsaAction<string>>(itemActions.setItemsFilter.type)
+    .debounceTime(200)
+    .map(action => action.payload)
+    .map(search => itemActions.loadItems.started(search));
+
+  @Effect()
   loadItems$ = this.actions$
-    .ofType<FsaAction<Item[]>>(itemActions.loadItems.started.type)
-    .switchMap(() => this.persistence.getItems())
+    .ofType<FsaAction<string>>(itemActions.loadItems.started.type)
+    .map(action => action.payload)
+    .switchMap(searchText => this.persistence.getItems(searchText))
     .delay(DELAY_SIMULATION)
     .map(items => itemActions.loadItems.done(items))
     .catch(err => {
@@ -64,6 +73,7 @@ export class ItemEffects {
   @Effect()
   saveItem$ = this.actions$
     .ofType<FsaAction<Item>>(itemActions.saveItem.started.type)
+    .debounceTime(500)
     .map(action => action.payload)
     .switchMap(item => this.persistence.saveItem(item))
     .delay(DELAY_SIMULATION)

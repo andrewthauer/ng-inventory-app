@@ -19,7 +19,10 @@ Setup
 -----
 
 ```shell
-cp db-example.json db.json
+# create a randomly generated `./db.json` file
+npm run random-data
+
+# install dependencies and start
 npm install && npm start
 ```
 

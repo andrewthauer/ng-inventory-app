@@ -12,8 +12,8 @@ import { Item, itemKeySelector } from './item.model';
 import { ItemPersistenceService } from './item-persistence.service';
 import { itemActions } from '../store/actions';
 
-const buildItem = (code = 'NEW', name = 'New Item', description = ''): Item => {
-  return { code, name, description, quantity: 0 };
+const buildItem = (name = 'New Item', description = ''): Item => {
+  return { name, description, quantity: 0 };
 };
 
 @Injectable()
@@ -60,14 +60,6 @@ export class ItemService {
     );
   }
 
-  fetchItems() {
-    this.store.dispatch(itemActions.loadItems.started());
-  }
-
-  fetchItem(id: number) {
-    this.store.dispatch(itemActions.loadItem.started(id));
-  }
-
   addItem(item: Item = null) {
     const newItem = item || buildItem();
     this.store.dispatch(itemActions.addItem.started(newItem));
@@ -79,5 +71,13 @@ export class ItemService {
 
   deleteItem(item: Item) {
     this.store.dispatch(itemActions.deleteItem.started(item));
+  }
+
+  private fetchItems(searchText?: string) {
+    this.store.dispatch(itemActions.loadItems.started());
+  }
+
+  private fetchItem(id: number) {
+    this.store.dispatch(itemActions.loadItem.started(id));
   }
 }
