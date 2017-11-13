@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
-import { Item } from '../shared';
+import { Item } from '../models';
 
 @Component({
   selector: 'app-quantity-editor',

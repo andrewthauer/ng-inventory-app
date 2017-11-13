@@ -1,5 +1,6 @@
-import { Action, createSelector } from '@ngrx/store';
-import { ItemState, itemActions } from '../items/store';
+import { Action, createSelector, createFeatureSelector } from '@ngrx/store';
+
+export const uiStoreFeatureName = 'ui';
 
 export interface UiState {
   someValue: any;

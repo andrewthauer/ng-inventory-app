@@ -1,14 +1,15 @@
-import { UiState, uiInitialState} from './ui-store';
-import { ItemState, itemsInitialState } from '../items/store';
+import { RouterState, routerInitialState } from '../core';
+import { UiState, uiInitialState } from '../core';
+import { ItemsState, itemsInitialState } from '../items/store';
 
 export interface AppState {
-  router: any;
+  router: RouterState;
   ui: UiState;
-  items: ItemState;
+  items: ItemsState;
 }
 
 export const appInitialState: AppState = {
-  router: {},
+  router: routerInitialState,
   ui: uiInitialState,
   items: itemsInitialState
 };

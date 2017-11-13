@@ -4,8 +4,7 @@ import { Observable } from 'rxjs/observable';
 import 'rxjs/add/operator/map';
 
 import { AppConfigToken, AppConfig } from '../../app.config';
-import { Item } from './item.model';
-import { ItemFilters } from './item-filters.model';
+import { Item, ItemFilters } from '../models';
 
 @Injectable()
 export class ItemPersistenceService {

@@ -1,7 +1,20 @@
-import { createSelector } from '@ngrx/store';
-import { Item } from '../shared';
-import { ItemState } from './state';
+import { head } from 'ramda';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
+import { Item } from '../models';
+import { ItemsState, itemsStoreFeatureName } from './state';
 
-export const itemsSelector = (state: ItemState) => state.items;
+export const getState = createFeatureSelector<ItemsState>(itemsStoreFeatureName);
 
-export const itemByIdSelector = (state: ItemState, id: number) => state.items.filter(item => item.id === id);
+export const getError = createSelector(getState, state => state.error);
+
+export const getIsBusy = createSelector(getState, state => state.isBusy);
+
+export const getAll = createSelector(getState, state => state.entities);
+
+export const getSelectedId = createSelector(getState, (items: ItemsState) => items.selectedItemId);
+
+export const getSelected = createSelector(
+  getAll,
+  getSelectedId,
+  (items, id) => head(items.filter(i => i.id === id))
+);

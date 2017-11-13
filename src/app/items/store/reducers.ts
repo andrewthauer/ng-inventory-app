@@ -1,7 +1,7 @@
 import { reducerWithInitialState, isType, FsaAction } from '../../../lib/ts-redux-fsa';
 import { upsert, remove } from '../../utils/fp';
-import { Item } from '../shared';
-import { ItemState, itemsInitialState } from './state';
+import { Item } from '../models';
+import { ItemsState, itemsInitialState } from './state';
 import { itemActions } from './actions';
 
 const handleError = (state: any, err: Error | any) => ({ ...state, error: err });
@@ -11,15 +11,15 @@ const selectItemId = (state, id: number) => {
   return { ...state, selectedItemId: id };
 };
 
-const upsertItem = (state, item: Item) => ({
+const upsertItem = (state: ItemsState, item: Item): ItemsState => ({
   ...state,
-  items: upsert(i => i.id, item, state.items),
+  entities: upsert(i => i.id, item, state.entities),
   isBusy: false
 });
 
-const removeItem = (state, item: Item) => ({
+const removeItem = (state: ItemsState, item: Item): ItemsState => ({
   ...state,
-  items: remove(i => i.id, item, state.items),
+  entities: remove(i => i.id, item, state.entities),
   isBusy: false
 });
 
@@ -33,7 +33,7 @@ export const itemsReducer = reducerWithInitialState(itemsInitialState)
     itemActions.saveOne.started,
     itemActions.removeOne.started,
   ], startAsync)
-  .case(itemActions.loadAll.done, (state, items) => ({ ...state, items, isBusy: false }))
+  .case(itemActions.loadAll.done, (state, entities) => ({ ...state, entities, isBusy: false }))
   .cases([
     itemActions.loadOne.done,
     itemActions.addOne.done,
@@ -41,9 +41,10 @@ export const itemsReducer = reducerWithInitialState(itemsInitialState)
   ], upsertItem)
   .case(itemActions.removeOne.done, removeItem)
   .cases([
-    itemActions.loadOne.failed,
+    itemActions.loadAll.failed,
     itemActions.loadOne.failed,
     itemActions.addOne.failed,
+    itemActions.saveOne.failed,
     itemActions.removeOne.failed,
     ], handleAsyncError)
   ;

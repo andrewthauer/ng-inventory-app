@@ -1,14 +1,16 @@
-import { Item } from '../shared';
+import { Item } from '../models';
 
-export interface ItemState {
-  items: Item[];
+export const itemsStoreFeatureName = 'items';
+
+export interface ItemsState {
+  entities: Item[];
   error: Error;
   isBusy: boolean;
   selectedItemId: number;
 }
 
-export const itemsInitialState: ItemState = {
-  items: [],
+export const itemsInitialState: ItemsState = {
+  entities: [],
   error: null,
   isBusy: false,
   selectedItemId: null

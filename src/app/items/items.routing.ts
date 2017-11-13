@@ -4,7 +4,7 @@ import {
   ItemsComponent,
   ItemListComponent,
   ItemDetailComponent
-} from './components';
+} from './containers';
 
 export const routes: Routes = [
   {

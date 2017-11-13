@@ -12,11 +12,15 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/withLatestFrom';
 
-import { Item, ItemFilters, ItemPersistenceService } from '../shared';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store';
+import { AppError, routerActions, ToastService } from '../../core';
+
+import { Item, ItemFilters } from '../models';
 import { itemActions } from './actions';
-import { AppError } from '../../core';
-import { ToastService } from '../../core/toast.service';
+import { ItemPersistenceService } from '../services';
 
 const DELAY_SIMULATION = 250;
 
@@ -25,14 +29,13 @@ const handleError = curry((toast: ToastService, msg: string, action: Function, e
   return of(action(AppError.of(err)));
 });
 
-@Injectable()
-export class ItemEffects {
-  constructor(
-    private actions$: Actions,
-    private persistence: ItemPersistenceService,
-    private toast: ToastService,
-  ) { }
+// const handleSuccess = curry((toast: ToastService, msg: string, action: Function, payload: any) => {
+//   toast.success(msg);
+//   return action(payload);
+// });
 
+@Injectable()
+export class ItemsEffects {
   @Effect()
   setItemsFilter$ = this.actions$
     .ofType<FsaAction<ItemFilters>>(itemActions.setFilters.type)
@@ -76,6 +79,10 @@ export class ItemEffects {
     .delay(DELAY_SIMULATION)
     .map(item => itemActions.saveOne.done(item))
     .do(() => this.toast.success('Item Saved'))
+    // NOTE: This is used in multiple places, consider decoupling navigation from the effect
+    // or potentially making the actions more fine grained
+    // or only do this if we are not on this screen
+    .map(action => routerActions.go({ path: ['/items'] }))
     .catch(handleError(this.toast, 'Save Item Failed', itemActions.saveOne.failed));
 
   @Effect()
@@ -87,4 +94,11 @@ export class ItemEffects {
     .map(item => itemActions.removeOne.done(item))
     .do(() => this.toast.success('Item Deleted'))
     .catch(handleError(this.toast, 'Remove Item Failed', itemActions.removeOne.failed));
+
+  constructor(
+    private store: Store<AppState>,
+    private actions$: Actions,
+    private persistence: ItemPersistenceService,
+    private toast: ToastService,
+  ) { }
 }

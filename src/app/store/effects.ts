@@ -1,5 +1,5 @@
-import { ItemEffects } from '../items/store';
+import { RouterEffects } from '../core';
 
 export const allEffects = [
-  ItemEffects
+  RouterEffects
 ];

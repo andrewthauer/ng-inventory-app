@@ -1,15 +1,19 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
+
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/of';
 
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store';
+import { routerActions } from '../../core/';
 
-import { itemActions, itemByIdSelector } from '../store';
-import { Item, ItemService } from '../shared';
+import { Item } from '../models';
+import { itemActions } from '../store';
+import * as itemSelectors from '../store/selectors';
 
 @Component({
   selector: 'app-item-detail',
@@ -21,23 +25,25 @@ import { Item, ItemService } from '../shared';
   `
 })
 export class ItemDetailComponent implements OnInit, OnDestroy {
-  public model: Item;
+  protected model: Item;
   protected isBusy: Observable<Boolean>;
   private subscription: Subscription;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private itemService: ItemService,
     private store: Store<AppState>,
-  ) { }
+  ) {
+    this.isBusy = this.store.select(itemSelectors.getIsBusy);
+    this.store.select(itemSelectors.getSelected)
+      .subscribe(item => this.model = item);
+  }
 
   ngOnInit() {
-    this.isBusy = this.store.select(state => state.items.isBusy);
-
     this.subscription = this.route.params.subscribe(p => {
-      this.itemService.loadAndSelectOne(+p.id)
-        .subscribe(i => this.model = i.item);
+      const id = +p.id;
+      this.store.dispatch(itemActions.selectOne(id));
+      this.store.dispatch(itemActions.loadOne.started(id));
     });
   }
 
@@ -46,12 +52,11 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(item) {
-    this.itemService.saveItem(item);
-    // TODO: Update effect and router state to navigate back to the list page
+    this.store.dispatch(itemActions.saveOne.started(item));
   }
 
   onCancel() {
-    this.navigateToList();
+    this.store.dispatch(routerActions.back());
   }
 
   private navigateToList() {

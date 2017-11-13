@@ -1,5 +1,5 @@
 import { actionCreatorFactory } from '../../../lib/ts-redux-fsa';
-import { Item, ItemFilters } from '../shared';
+import { Item, ItemFilters } from '../models';
 
 const actionCreator = actionCreatorFactory();
 

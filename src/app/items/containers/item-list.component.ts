@@ -1,12 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ifElse, identity } from 'ramda';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/combineLatest';
+
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store';
+import { routerActions } from '../../core';
 
-import { ModalService } from '../../core/modal.service';
-import { Item, ItemService, StockLevel, calcStockLevel, ItemFilters } from '../shared';
+import { ModalService } from '../../core';
+import { Item, StockLevel, calcStockLevel, ItemFilters } from '../models';
 import { itemActions } from '../store';
+import * as itemSelectors from '../store/selectors';
 
 @Component({
   selector: 'app-item-list',
@@ -23,25 +28,34 @@ export class ItemListComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    private itemService: ItemService,
     private modal: ModalService
-  ) { }
+  ) {
+    this.model = Observable.combineLatest(
+      this.store.select(itemSelectors.getAll),
+      this.store.select(itemSelectors.getIsBusy),
+      this.store.select(itemSelectors.getError),
+      (entities, isBusy, error) => ({ entities, isBusy, error })
+    );
+  }
 
   ngOnInit() {
-    this.searchText = '';
-    this.model = this.itemService.loadAndSelectAll();
+    this.store.dispatch(itemActions.loadAll.started());
   }
 
   addItem() {
-    this.itemService.addItem();
+    this.store.dispatch(itemActions.addOne.started());
   }
 
   deleteItem(item: Item) {
     this.modal.confirm('Are you sure?')
       .subscribe(ifElse(identity,
-        () => this.itemService.removeItem(item),
+        () => this.store.dispatch(itemActions.removeOne.started(item)),
         () => false
       ));
+  }
+
+  navigateToItemDetails(item) {
+    this.store.dispatch(routerActions.go({ path: ['/items', item.id] }));
   }
 
   stockLevel(item: Item) {
@@ -54,6 +68,6 @@ export class ItemListComponent implements OnInit {
   }
 
   quantityChanged(item) {
-    this.itemService.saveItem(item);
+    this.store.dispatch(itemActions.saveOne.started(item));
   }
 }

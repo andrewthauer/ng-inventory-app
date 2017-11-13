@@ -1,26 +1,35 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
 import { SharedModule } from '../shared';
 import { routes } from './items.routing';
+import { itemsStoreFeatureName, itemsReducer, ItemsEffects, itemsInitialState } from './store';
 
 import {
   ItemPersistenceService,
-  ItemService,
-} from './shared';
+} from './services';
+
+import {
+  ItemFormComponent,
+  ItemFilterComponent,
+  QuantityEditorComponent
+} from './components';
 
 import {
   ItemsComponent,
-  ItemFormComponent,
-  ItemFilterComponent,
   ItemListComponent,
   ItemDetailComponent,
-  QuantityEditorComponent
-} from './components';
+} from './containers';
+import { EffectsFeatureModule } from '@ngrx/effects/src/effects_feature_module';
 
 @NgModule({
   imports: [
     SharedModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    StoreModule.forFeature(itemsStoreFeatureName, itemsReducer),
+    EffectsModule.forFeature([ItemsEffects]),
   ],
   declarations: [
     ItemsComponent,
@@ -32,7 +41,6 @@ import {
   ],
   providers: [
     ItemPersistenceService,
-    ItemService,
   ],
   exports: [
     ItemsComponent,

@@ -1,6 +1,7 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { TitleComponent } from './title.component';
+import { DebugElement } from '@angular/core/src/debug/debug_node';
 
 @Component({
   template: `
@@ -12,10 +13,10 @@ import { TitleComponent } from './title.component';
 class TitleTestComponent { }
 
 describe('TitleComponent', () => {
-  let fixture;
-  let title: TitleComponent;
-  let element;
-  let debugEl;
+  let fixture: ComponentFixture<TitleComponent>;
+  let component: TitleComponent;
+  let debugEl: DebugElement;
+  let element: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -27,42 +28,43 @@ describe('TitleComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(TitleComponent);
-    title = fixture.componentInstance;
+    component = fixture.componentInstance;
     element = fixture.nativeElement;
     debugEl = fixture.debugElement;
   }));
 
   it('should create the title', async(() => {
-    expect(title).toBeTruthy();
+    expect(component).toBeTruthy();
   }));
 
   it(`should have as title to be empty`, async(() => {
-    expect(title.title).toBeFalsy();
+    expect(component.title).toBeFalsy();
   }));
 
   it(`should have as title 'hello!'`, async(() => {
-    title.title = 'hello!';
-    expect(title.title).toEqual('hello!');
+    component.title = 'hello!';
+    expect(component.title).toEqual('hello!');
   }));
 
   it('should render title in a h3 tag', async(() => {
-    title.title = 'acme';
+    component.title = 'acme';
     fixture.detectChanges();
     expect(element.querySelector('h3').textContent).toContain('acme');
   }));
 
   describe('with content', () => {
+    let testFixture: ComponentFixture<TitleTestComponent>;
     let testComponent: TitleTestComponent;
 
     beforeEach(async(() => {
-      fixture = TestBed.createComponent(TitleTestComponent);
-      testComponent = fixture.componentInstance;
-      element = fixture.nativeElement;
-      debugEl = fixture.debugElement;
+      testFixture = TestBed.createComponent(TitleTestComponent);
+      testComponent = testFixture.componentInstance;
+      element = testFixture.nativeElement;
+      debugEl = testFixture.debugElement;
     }));
 
     it('should render title with additional content', async(() => {
-      fixture.detectChanges();
+      testFixture.detectChanges();
       expect(element.querySelector('span').textContent).toContain('meta');
     }));
   });

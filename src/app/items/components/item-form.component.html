@@ -30,8 +30,8 @@
       type="number" [ngModel]="model.quantity" />
     </div>
 
-  <div class="pv2">
-    <app-button text="Save" type="submit"></app-button>
+  <div class="pv2 tr">
+    <app-button text="Save" type="submit" [disabled]="!itemForm.valid"></app-button>
     <app-button text="Cancel" (click)="cancel()"></app-button>
     <span class="green v-mid dib" *ngIf="itemForm.valid">
       &nbsp;<i class="fa fa-check-circle-o fa-2x"></i>

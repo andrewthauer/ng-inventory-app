@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { Item } from '../shared';
+import { Item } from '../models';
 
 @Component({
   selector: 'app-item-form',

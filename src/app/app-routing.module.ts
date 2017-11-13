@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeModule } from './home';
 import { ItemsModule } from './items';
 
-import { NotFoundComponent } from './core/not-found.component';
+import { NotFoundComponent } from './core/containers/not-found.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

@@ -4,7 +4,12 @@ import { IconType } from './icon-type';
 @Component({
   selector: 'app-button',
   template: `
-    <button class="pa2 bg-gray white" [type]="type" (click)="onClick()">
+    <button
+      [ngClass]="{ 'pa3 white br3 bs--none': true, 'bg-gray': !disabled, 'bg-light-gray': disabled }"
+      [type]="type"
+      [disabled]="disabled"
+      (click)="onClick()"
+    >
       <i [ngClass]="['fa', 'fa-' + icon]" *ngIf="icon && !icon.none"></i>
       {{ text }}
     </button>
@@ -15,6 +20,7 @@ export class ButtonComponent implements OnInit {
 
   @Input() text = '';
   @Input() type = 'button';
+  @Input() disabled = false;
   @Input() icon: IconType | string = IconType.none;
   @Output() click: EventEmitter<any> = new EventEmitter();
 
