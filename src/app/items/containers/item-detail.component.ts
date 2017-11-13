@@ -4,15 +4,13 @@ import { NgForm } from '@angular/forms';
 
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/of';
 
-import { Store } from '@ngrx/store';
-import { AppState } from '../../store';
 import { routerActions } from '../../store';
-
 import { Item } from '../models';
-import { itemActions } from '../store';
+import { ItemsState, itemActions } from '../store';
 import * as itemSelectors from '../store/selectors';
 
 @Component({
@@ -32,7 +30,7 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private store: Store<AppState>,
+    private store: Store<ItemsState>,
   ) {
     this.isBusy = this.store.select(itemSelectors.getIsBusy);
     this.store.select(itemSelectors.getSelected)

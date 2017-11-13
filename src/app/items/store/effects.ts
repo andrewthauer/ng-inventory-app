@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Actions, Effect } from '@ngrx/effects';
-import { FsaAction } from '../../../lib/ts-redux-fsa';
 import { curry } from 'ramda';
-
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/catch';
@@ -14,12 +13,12 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/withLatestFrom';
 
-import { Store } from '@ngrx/store';
-import { AppState } from '../../store';
+import { FsaAction } from '../../../lib/ts-redux-fsa';
 import { AppError, ToastService } from '../../core';
 import { routerActions } from '../../store';
 
 import { Item, ItemFilters } from '../models';
+import { ItemsState } from './state';
 import { itemActions } from './actions';
 import { ItemPersistenceService } from '../services';
 
@@ -97,7 +96,7 @@ export class ItemsEffects {
     .catch(handleError(this.toast, 'Remove Item Failed', itemActions.removeOne.failed));
 
   constructor(
-    private store: Store<AppState>,
+    private store: Store<ItemsState>,
     private actions$: Actions,
     private persistence: ItemPersistenceService,
     private toast: ToastService,
