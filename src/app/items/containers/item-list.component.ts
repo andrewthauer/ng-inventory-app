@@ -64,7 +64,8 @@ export class ItemListComponent implements OnInit {
     this.store.dispatch(itemActions.setFilters(filters));
   }
 
-  quantityChanged(item) {
-    this.store.dispatch(itemActions.saveOne.started(item));
+  quantityChanged(item: Item, newQuantity) {
+    const newItem: Item = { ...item, quantity: newQuantity };
+    this.store.dispatch(itemActions.saveOne.started(newItem));
   }
 }

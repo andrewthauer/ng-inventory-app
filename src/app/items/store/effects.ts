@@ -82,7 +82,7 @@ export class ItemsEffects {
     // NOTE: This is used in multiple places, consider decoupling navigation from the effect
     // or potentially making the actions more fine grained
     // or only do this if we are not on this screen
-    .map(action => routerActions.go({ path: ['/items'] }))
+    // .map(action => routerActions.go({ path: ['/items'] }))
     .catch(handleError(this.toast, 'Save Item Failed', itemActions.saveOne.failed));
 
   @Effect()

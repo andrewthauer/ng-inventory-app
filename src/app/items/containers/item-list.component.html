@@ -37,7 +37,7 @@
         {{ (item.quantity || 0) | number }}
       </td>
       <td class="tc">
-        <app-quantity-editor [item]="item" (change)="quantityChanged(item, $event)"></app-quantity-editor>
+        <app-quantity-editor [quantity]="item.quantity" (change)="quantityChanged(item, $event)"></app-quantity-editor>
         <button class="link br2 pa2 ml2 bg-red white" (click)="deleteItem(item)">
           <i class="fa fa-remove"></i>
         </button>
