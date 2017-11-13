@@ -16,7 +16,8 @@ import 'rxjs/add/operator/withLatestFrom';
 
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store';
-import { AppError, routerActions, ToastService } from '../../core';
+import { AppError, ToastService } from '../../core';
+import { routerActions } from '../../store';
 
 import { Item, ItemFilters } from '../models';
 import { itemActions } from './actions';

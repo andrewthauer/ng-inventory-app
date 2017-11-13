@@ -9,7 +9,7 @@ import 'rxjs/add/observable/of';
 
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store';
-import { routerActions } from '../../core/';
+import { routerActions } from '../../store';
 
 import { Item } from '../models';
 import { itemActions } from '../store';

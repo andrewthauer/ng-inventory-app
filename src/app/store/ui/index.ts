@@ -1,6 +1,6 @@
 import { Action, createSelector, createFeatureSelector } from '@ngrx/store';
 
-export const uiStoreFeatureName = 'ui';
+export const uiStateKey = 'ui';
 
 export interface UiState {
   someValue: any;

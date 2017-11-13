@@ -1,4 +1,4 @@
-import { RouterEffects } from '../core';
+import { RouterEffects } from './router';
 
 export const allEffects = [
   RouterEffects

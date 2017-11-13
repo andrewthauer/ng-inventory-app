@@ -6,7 +6,7 @@ import 'rxjs/add/observable/combineLatest';
 
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store';
-import { routerActions } from '../../core';
+import { routerActions } from '../../store';
 
 import { ModalService } from '../../core';
 import { Item, StockLevel, calcStockLevel, ItemFilters } from '../models';

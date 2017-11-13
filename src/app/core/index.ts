@@ -1,6 +1,6 @@
-export * from './core.module';
-export * from './services';
 export * from './components';
 export * from './containers';
+export * from './services';
 export * from './shared';
-export * from './stores';
+
+export * from './core.module';

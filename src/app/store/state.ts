@@ -1,15 +1,19 @@
-import { RouterState, routerInitialState } from '../core';
-import { UiState, uiInitialState } from '../core';
-import { ItemsState, itemsInitialState } from '../items/store';
+import { StoreRouterConfig } from '@ngrx/router-store';
+import { RouterState, routerInitialState, routerStateKey } from './router';
+import { UiState, uiInitialState } from './ui';
+
+// NOTE: `items` is configured as a feature store
 
 export interface AppState {
   router: RouterState;
   ui: UiState;
-  items: ItemsState;
 }
 
 export const appInitialState: AppState = {
   router: routerInitialState,
   ui: uiInitialState,
-  items: itemsInitialState
+};
+
+export const appStoreRouterConfig: StoreRouterConfig = {
+  stateKey: routerStateKey
 };
