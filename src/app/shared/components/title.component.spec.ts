@@ -1,7 +1,8 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { TitleComponent } from './title.component';
 import { DebugElement } from '@angular/core/src/debug/debug_node';
+
+import { TitleComponent } from './title.component';
 
 @Component({
   template: `

@@ -4,8 +4,8 @@ import { ifElse, identity } from 'ramda';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
 
-import { routerActions } from '../../store';
-import { ModalService } from '../../core';
+import { routerActions } from 'app/store';
+import { ModalService } from 'app/core';
 import { Item, StockLevel, calcStockLevel, ItemFilters } from '../models';
 import { ItemsState, itemActions } from '../store';
 import * as itemSelectors from '../store/selectors';

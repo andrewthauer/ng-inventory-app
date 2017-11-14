@@ -1,10 +1,4 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
-import { Item } from '../models';
-
-export interface QuantityChangedEventArgs {
-  item: Item;
-  newQuantity: number;
-}
 
 @Component({
   selector: 'app-quantity-editor',

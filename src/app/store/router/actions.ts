@@ -1,5 +1,5 @@
-import { actionCreatorFactory, FsaAction } from '../../../lib/ts-redux-fsa';
-import { RouterActionPayload, RouterState } from './state';
+import { actionCreatorFactory } from 'lib/ts-redux-fsa';
+import { RouterActionPayload } from './state';
 
 const actionCreator = actionCreatorFactory();
 

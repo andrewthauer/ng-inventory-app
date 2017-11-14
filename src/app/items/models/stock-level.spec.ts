@@ -2,7 +2,7 @@ import { Item } from './item.model';
 import { StockLevel, calcStockLevel } from './stock-level';
 
 describe('Stock Level', () => {
-  const itemTemplate: Item = { id: 1, code: 'abc', name: 'my item' };
+  const itemTemplate: Item = { id: 1, name: 'my item' };
 
   describe('calcStockLevel', () => {
     it('should be out of stock', () => {

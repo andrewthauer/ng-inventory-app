@@ -3,10 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppConfigToken, buildAppConfig } from './app.config';
 import { AppRoutingModule } from './app-routing.module';
-import { AppStoreModule } from './store';
+import { AppStoreModule } from 'app/store';
 import { AppComponent } from './app.component';
 import { CoreModule, LoggerToken } from './core';
-import { SharedModule } from './shared';
 
 @NgModule({
   imports: [

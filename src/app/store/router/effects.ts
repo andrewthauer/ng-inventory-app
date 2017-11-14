@@ -5,7 +5,7 @@ import { Effect, Actions } from '@ngrx/effects';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
-import { actionCreatorFactory, FsaAction } from '../../../lib/ts-redux-fsa';
+import { FsaAction } from 'lib/ts-redux-fsa';
 import { routerActions } from './actions';
 import { RouterActionPayload } from './state';
 

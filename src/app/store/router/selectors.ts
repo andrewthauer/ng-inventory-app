@@ -1,6 +1,4 @@
-import { createSelector, createFeatureSelector } from '@ngrx/store';
-
-import { routerActions } from './actions';
+import { createSelector } from '@ngrx/store';
 import { RouterState, routerStateKey } from './state';
 
 const getState = state => <RouterState>state[routerStateKey];

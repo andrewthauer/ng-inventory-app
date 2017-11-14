@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
@@ -8,7 +7,7 @@ import { Store } from '@ngrx/store';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/of';
 
-import { routerActions } from '../../store';
+import { routerActions } from 'app/store';
 import { Item } from '../models';
 import { ItemsState, itemActions } from '../store';
 import * as itemSelectors from '../store/selectors';
@@ -28,7 +27,6 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private store: Store<ItemsState>,
   ) {
@@ -55,9 +53,5 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
 
   onCancel() {
     this.store.dispatch(routerActions.back());
-  }
-
-  private navigateToList() {
-    this.router.navigateByUrl('/items');
   }
 }

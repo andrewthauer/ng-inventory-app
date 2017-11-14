@@ -1,7 +1,5 @@
-import { Router, NavigationExtras, RouterStateSnapshot, Params } from '@angular/router';
+import { NavigationExtras, RouterStateSnapshot, Params } from '@angular/router';
 import { RouterReducerState, RouterStateSerializer } from '@ngrx/router-store';
-
-import { actionCreatorFactory, FsaAction } from '../../../lib/ts-redux-fsa';
 
 // Reducer name config
 export const routerStateKey = 'routerReducer';

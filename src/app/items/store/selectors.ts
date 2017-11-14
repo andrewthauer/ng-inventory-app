@@ -1,6 +1,6 @@
-import { head } from 'ramda';
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { Item } from '../models';
+import { head } from 'ramda';
+
 import { ItemsState, itemsStoreFeatureName } from './state';
 
 export const getState = createFeatureSelector<ItemsState>(itemsStoreFeatureName);

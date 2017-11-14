@@ -3,11 +3,8 @@ import { routerReducer } from '@ngrx/router-store';
 import { storeFreeze } from 'ngrx-store-freeze';
 
 import { environment } from '../../environments/environment';
-
-import { appInitialState } from './state';
-import { uiReducer } from './ui';
-import { routerStateKey } from './router';
 import { AppState } from './state';
+import { uiReducer } from './ui';
 
 // NOTE: `items` is configured as a feature store
 

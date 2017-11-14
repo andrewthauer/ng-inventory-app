@@ -5,7 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { SharedModule } from '../shared';
 import { routes } from './items.routing';
-import { itemsStoreFeatureName, itemsReducer, ItemsEffects, itemsInitialState } from './store';
+import { itemsStoreFeatureName, itemsReducer, ItemsEffects } from './store';
 
 import {
   ItemPersistenceService,
@@ -22,7 +22,6 @@ import {
   ItemListComponent,
   ItemDetailComponent,
 } from './containers';
-import { EffectsFeatureModule } from '@ngrx/effects/src/effects_feature_module';
 
 @NgModule({
   imports: [
