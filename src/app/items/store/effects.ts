@@ -17,7 +17,7 @@ import { Item, ItemFilters } from '../models';
 import { itemActions } from './actions';
 import { ItemPersistenceService } from '../services';
 
-const DELAY_SIMULATION = 250;
+const DELAY_SIMULATION = 500;
 
 const handleError = curry((toast: ToastService, msg: string, action: Function, err: any) => {
   toast.error(msg);

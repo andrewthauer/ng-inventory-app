@@ -4,7 +4,6 @@ import { SharedModule } from '../shared';
 import { routes } from './home.routing';
 
 import { HomeComponent } from './home.component';
-import { HeroUnitComponent } from './hero-unit.component';
 
 @NgModule({
   imports: [
@@ -13,11 +12,6 @@ import { HeroUnitComponent } from './hero-unit.component';
   ],
   declarations: [
     HomeComponent,
-    HeroUnitComponent,
-  ],
-  exports: [
-    HomeComponent,
-    HeroUnitComponent,
   ]
 })
 export class HomeModule { }

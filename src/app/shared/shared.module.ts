@@ -4,12 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { HoverStyleDirective } from './hover-style.directive';
-import { DelayDirective } from './delay.directive';
-import { EllipsePipe } from './ellipse.pipe';
+import { AppTemplateDirective, DelayDirective, HoverStyleDirective } from './directives';
+import { EllipsePipe } from './pipes';
 
 import {
   ButtonComponent,
+  CardComponent,
+  DataListComponent,
+  DataListItemDirective,
+  HeroUnitComponent,
   TitleComponent,
 } from './components';
 
@@ -21,29 +24,33 @@ import {
     RouterModule,
   ],
   declarations: [
-    // components
+    AppTemplateDirective,
     ButtonComponent,
-    TitleComponent,
-    // directives
+    CardComponent,
+    DataListComponent,
+    DataListItemDirective,
     DelayDirective,
-    HoverStyleDirective,
-    // pipes
     EllipsePipe,
+    HeroUnitComponent,
+    HoverStyleDirective,
+    TitleComponent,
   ],
   exports: [
-    // components
-    ButtonComponent,
-    TitleComponent,
-    // directives
-    DelayDirective,
-    HoverStyleDirective,
-    // pipes
-    EllipsePipe,
     // modules
     CommonModule,
     FormsModule,
     HttpClientModule,
     RouterModule,
+    // components, directives, etc.
+    ButtonComponent,
+    CardComponent,
+    DataListComponent,
+    DataListItemDirective,
+    DelayDirective,
+    EllipsePipe,
+    HeroUnitComponent,
+    HoverStyleDirective,
+    TitleComponent,
   ]
 })
 export class SharedModule { }

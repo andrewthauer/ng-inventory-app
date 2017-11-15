@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  template: `<app-hero-unit></app-hero-unit>`
+  templateUrl: './home.component.html'
 })
 export class HomeComponent { }

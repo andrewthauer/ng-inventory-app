@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IconType } from './icon-type';
+import { IconType } from '../../icon-type';
 
 @Component({
   selector: 'app-button',

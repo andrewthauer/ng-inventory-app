@@ -40,14 +40,6 @@ import {
   ],
   providers: [
     ItemPersistenceService,
-  ],
-  exports: [
-    ItemsComponent,
-    ItemFormComponent,
-    ItemFilterComponent,
-    ItemListComponent,
-    ItemDetailComponent,
-    QuantityEditorComponent,
   ]
 })
 export class ItemsModule { }

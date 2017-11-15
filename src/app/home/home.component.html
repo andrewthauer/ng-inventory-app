@@ -1,0 +1,23 @@
+<app-hero-unit>
+  <div class="tc">
+    <p class="f5 f4-m f3-l lh-copy mt0">
+      Tracking stuff so you don't have to!
+    </p>
+
+    <small>Easy as ...</small>
+
+    <div class="mv3">
+      <app-data-list [items]="[
+        { text: 'one', delay: 1000, color: 'red' },
+        { text: 'two', delay: 2000, color: 'green' },
+        { text: 'three', delay: 3000, color: 'blue' }
+      ]">
+        <app-card *appDataListItem="let item">
+          <span card-body *appDelay="item.delay; let time = loadTime" [ngStyle]="{ color: item.color }">
+            {{item.text}}
+          </span>
+        </app-card>
+      </app-data-list>
+    </div>
+  </div>
+</app-hero-unit>
