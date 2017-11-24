@@ -1,20 +1,17 @@
 // NOTE: This is purely a demonstration of how to wrap a non trivial component
 
-import { Component, Input, Output, Directive, ContentChild, TemplateRef } from '@angular/core';
-import { DataListItemDirective } from './data-list-item.directive';
+import { Component, Input, Directive, ContentChild, TemplateRef } from '@angular/core';
 
 @Directive({ selector: '[appDataListItemWrapper]' })
-export class DataListItemWrapperDirective {
-  constructor() { }
-}
+export class DataListItemWrapperDirective { }
 
 @Component({
   selector: 'app-data-list-wrapper',
   template: `
     <app-data-list [items]="items">
-      <div *appDataListItem="let item">
+      <ng-container *appDataListItem="let item">
         <ng-template *ngTemplateOutlet="itemWrappedTemplate; context: { $implicit: item }"></ng-template>
-      </div>
+      </ng-container>
     </app-data-list>
   `
 })

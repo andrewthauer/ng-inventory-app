@@ -1,6 +1,7 @@
 import { Directive, TemplateRef, ViewContainerRef, Input } from '@angular/core';
 
 export class DelayContext {
+   // tslint-disable-line
   constructor(private loadTime: number) { }
 }
 

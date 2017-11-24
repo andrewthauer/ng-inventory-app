@@ -8,7 +8,6 @@
     <small>Easy as ...</small>
 
     <div class="mv3">
-
       <app-data-list [items]="oneTwoThree">
         <app-card *appDataListItem="let item">
           <span card-body *appDelay="item.delay; let time = loadTime" [ngStyle]="{ color: item.color }">
@@ -16,15 +15,6 @@
           </span>
         </app-card>
       </app-data-list>
-
-      <br/>
-      <br/>
-
-      <app-data-list-wrapper [items]="oneTwoThree">
-        <span *appDataListItemWrapper="let item">
-          Hello {{ item.text }}
-        </span>
-      </app-data-list-wrapper>
     </div>
 
   </div>

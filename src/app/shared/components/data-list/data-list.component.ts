@@ -1,6 +1,17 @@
-import { Component, OnInit, Input, Output, ContentChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, ContentChild, TemplateRef } from '@angular/core';
 import { DataListItemDirective } from './data-list-item.directive';
 
+/**
+ * A data list repeater component.
+ *
+ * @export
+ * @class DataListComponent
+ * @implements {OnInit}
+ * @example
+ *  <app-data-list [items]="oneTwoThree">
+ *    <ng-template appDataListItem let-item>Number: {{ item.text }}</ng-template>
+ *  </app-data-list>
+ */
 @Component({
   selector: 'app-data-list',
   template: `
