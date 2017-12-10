@@ -22,8 +22,8 @@ import * as itemSelectors from '../store/selectors';
   `
 })
 export class ItemDetailComponent implements OnInit, OnDestroy {
-  protected model: Item;
-  protected isBusy: Observable<Boolean>;
+  model: Item;
+  isBusy: Observable<Boolean>;
   private subscription: Subscription;
 
   constructor(

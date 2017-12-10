@@ -23,7 +23,7 @@ const removeItem = (state: ItemsState, item: Item): ItemsState => ({
   isBusy: false
 });
 
-export const itemsReducer = reducerWithInitialState(itemsInitialState)
+export const reducer = reducerWithInitialState(itemsInitialState)
   .case(itemActions.setFilters, (state, text) => ({ ...state, filter: text }))
   .case(itemActions.selectOne, selectItemId)
   .cases([
@@ -48,3 +48,7 @@ export const itemsReducer = reducerWithInitialState(itemsInitialState)
     itemActions.removeOne.failed,
     ], handleAsyncError)
   ;
+
+export function itemsReducer(state: ItemsState = itemsInitialState, action) {
+  return reducer(state, action);
+}

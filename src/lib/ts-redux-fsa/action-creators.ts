@@ -122,5 +122,3 @@ export function actionCreatorFactory(
 
   return Object.assign(actionCreator, { async: asyncActionCreators });
 }
-
-export default actionCreatorFactory;

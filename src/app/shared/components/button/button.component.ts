@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IconType } from '../../icon-type';
 
 @Component({
   selector: 'app-button',
@@ -8,27 +7,25 @@ import { IconType } from '../../icon-type';
       [ngClass]="{ 'pa3 white br3 bs--none': true, 'bg-gray': !disabled, 'bg-light-gray': disabled }"
       [type]="type"
       [disabled]="disabled"
-      (click)="onClick()"
+      (click)="onClick($event)"
     >
-      <i [ngClass]="['fa', 'fa-' + icon]" *ngIf="icon && !icon.none"></i>
+      <i [ngClass]="['fa', 'fa-' + icon]" *ngIf="icon"></i>
       {{ text }}
     </button>
   `
 })
 export class ButtonComponent implements OnInit {
-  IconType = IconType;
-
   @Input() text = '';
   @Input() type = 'button';
   @Input() disabled = false;
-  @Input() icon: IconType | string = IconType.none;
+  @Input() icon;
   @Output() click: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() { }
 
-  onClick(e: any) {
+  onClick(e) {
     this.click.emit(e);
   }
 }

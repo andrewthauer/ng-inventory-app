@@ -9,9 +9,13 @@ export const uiInitialState: UiState = {
   someValue: null
 };
 
-export const uiReducer = (state = uiInitialState, action) => {
+export const reducer = (state = uiInitialState, action) => {
   switch (true) {
     default:
       return state;
   }
 };
+
+export function uiReducer(state: UiState = uiInitialState, action) {
+  return reducer(state, action);
+}
