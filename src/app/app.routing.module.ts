@@ -10,6 +10,7 @@ export const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', loadChildren: './home/home.module#HomeModule' },
   { path: 'items', loadChildren: './items/items.module#ItemsModule' },
+  { path: 'lazy', loadChildren: './lazy/lazy.module#LazyModule' },
   { path: '**', component: NotFoundComponent },
 ];
 
