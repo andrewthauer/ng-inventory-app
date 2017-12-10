@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { Item } from './src/app/items/shared/item.model';
+import { Item } from '../src/app/items/models/item.model';
 import * as R from 'ramda';
 import * as randomWord from 'random-word';
 

@@ -4,7 +4,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { throwIfAlreadyLoaded } from 'app/core';
+import { throwIfAlreadyLoaded } from '../core';
 import { environment } from '../../environments/environment';
 import { appStoreRouterConfig } from './state';
 import { reducers, metaReducers } from './reducers';

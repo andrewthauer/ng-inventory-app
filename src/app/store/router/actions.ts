@@ -1,4 +1,4 @@
-import { actionCreatorFactory } from 'lib/ts-redux-fsa';
+import { actionCreatorFactory } from '../../../lib/ts-redux-fsa';
 import { RouterActionPayload } from './state';
 
 const actionCreator = actionCreatorFactory();

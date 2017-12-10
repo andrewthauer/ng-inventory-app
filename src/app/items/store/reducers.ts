@@ -1,5 +1,5 @@
-import { reducerWithInitialState } from 'lib/ts-redux-fsa';
-import { upsert, remove } from 'app/utils/fp';
+import { reducerWithInitialState } from '../../../lib/ts-redux-fsa';
+import { upsert, remove } from '../../utils/fp';
 import { Item } from '../models';
 import { ItemsState, itemsInitialState } from './state';
 import { itemActions } from './actions';

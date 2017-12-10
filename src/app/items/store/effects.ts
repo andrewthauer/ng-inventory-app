@@ -12,8 +12,8 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/withLatestFrom';
 
-import { FsaAction } from 'lib/ts-redux-fsa';
-import { AppError, ToastService } from 'app/core';
+import { FsaAction } from '../../../lib/ts-redux-fsa';
+import { AppError, ToastService } from '../../core';
 import { Item, ItemFilters } from '../models';
 import { itemActions } from './actions';
 import { ItemPersistenceService } from '../services';

@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/of';
 
-import { routerActions } from 'app/store';
+import { routerActions } from '../../store';
 import { Item } from '../models';
 import { ItemsState, itemActions } from '../store';
 import * as itemSelectors from '../store/selectors';

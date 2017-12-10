@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "dist/browser",
       "assets": [
         "assets",
         "favicon.ico"
@@ -48,7 +48,7 @@
       "tsconfig": "tsconfig.server.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "serviceWorker": true,
+      "serviceWorker": false,
       "styles": [
         "../node_modules/tachyons/css/tachyons.min.css",
         "../node_modules/font-awesome/css/font-awesome.css",
