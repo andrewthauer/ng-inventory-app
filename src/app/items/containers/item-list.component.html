@@ -5,11 +5,11 @@
       <i class="fa fa-spinner fa-spin" *ngIf="(model | async)?.isBusy"></i>
     </app-title>
   </div>
-  
+
   <div class="w-50">
     <app-item-filter (valueChanged)="onFilterChanged($event)">
     </app-item-filter>
-  </div>     
+  </div>
 </header>
 
 <table class="w-100">
