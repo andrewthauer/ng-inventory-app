@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { PLATFORM_ID, APP_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
@@ -14,6 +15,7 @@ import { CoreModule, LoggerToken } from './core';
 @NgModule({
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserAnimationsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     CoreModule,
     AppRoutingModule,

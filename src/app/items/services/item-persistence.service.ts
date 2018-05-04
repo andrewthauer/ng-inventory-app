@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { AppConfigToken, AppConfig } from '../../app.config';
 import { Item, ItemFilters } from '../models';
@@ -32,7 +32,8 @@ export class ItemPersistenceService {
   }
 
   deleteItem(item: Item): Observable<Item> {
-    return this.http.delete<Item>(`${this.serviceUrl}/items/${item.id}`)
-      .map(() => item);
+    return this.http.delete<Item>(`${this.serviceUrl}/items/${item.id}`).pipe(
+      map(() => item)
+    );
   }
 }

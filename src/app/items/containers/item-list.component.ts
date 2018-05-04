@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ifElse, identity } from 'ramda';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/combineLatest';
+import { Observable, combineLatest } from 'rxjs';
 
 import { routerActions } from '../../store';
 import { ModalService } from '../../core';
@@ -27,7 +26,7 @@ export class ItemListComponent implements OnInit {
     private store: Store<ItemsState>,
     private modal: ModalService
   ) {
-    this.model = Observable.combineLatest(
+    this.model = combineLatest(
       this.store.select(itemSelectors.getAll),
       this.store.select(itemSelectors.getIsBusy),
       this.store.select(itemSelectors.getError),

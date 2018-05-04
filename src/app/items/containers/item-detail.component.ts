@@ -1,11 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
+import { Subscription, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import 'rxjs/add/observable/combineLatest';
-import 'rxjs/add/observable/of';
 
 import { routerActions } from '../../store';
 import { Item } from '../models';
