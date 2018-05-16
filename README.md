@@ -5,7 +5,7 @@ Inventory Trax
 
 This is a sample angular application using the following:
 
-* [Angular v5](https://angular.io/)
+* [Angular](https://angular.io/)
 * [RxJS](https://github.com/Reactive-Extensions/RxJS)
 * [ngrx](https://github.com/ngrx/platform)
 * [Ramda](http://ramdajs.com/)
