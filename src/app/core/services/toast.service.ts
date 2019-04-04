@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import * as toastr from 'toastr';
+
+declare global {
+  const toastr: any;
+}
 
 @Injectable({
   providedIn: 'root',
