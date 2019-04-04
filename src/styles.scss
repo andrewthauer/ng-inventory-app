@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.bg-info {
+  background-color: white;
+}
+
+.bg-success {
+  background-color: green;
+}
+
+.bg-warning {
+  background-color: orange;
+}
+
+.bg-error {
+  background-color: red;
+}

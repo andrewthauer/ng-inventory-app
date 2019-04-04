@@ -1,38 +1,43 @@
 import { Injectable } from '@angular/core';
 
-// declare const toastr: any;
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+
+const snackBarConfig: MatSnackBarConfig = {
+  verticalPosition: 'top',
+  // duration: 3000,
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToastService {
-  constructor() {
-    // if (toastr) {
-    //   toastr.options.closeButton = true;
-    // }
-  }
+  constructor(private snackBar: MatSnackBar) {}
 
   info(message: string) {
-    // if (toastr) {
-    //   toastr.info(message);
-    // }
+    this.snackBar.open(message, '', {
+      ...snackBarConfig,
+      panelClass: 'bg-info',
+    });
   }
 
   success(message: string) {
-    // if (toastr) {
-    //   toastr.success(message);
-    // }
+    this.snackBar.open(message, '', {
+      ...snackBarConfig,
+      panelClass: 'bg-success',
+    });
   }
 
   warning(message: string) {
-    // if (toastr) {
-    //   toastr.warning(message);
-    // }
+    this.snackBar.open(message, '', {
+      ...snackBarConfig,
+      panelClass: 'bg-warning',
+    });
   }
 
   error(message: string) {
-    // if (toastr) {
-    //   toastr.error(message);
-    // }
+    this.snackBar.open(message, '', {
+      ...snackBarConfig,
+      panelClass: 'bg-error',
+    });
   }
 }

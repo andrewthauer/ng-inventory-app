@@ -1,6 +1,5 @@
 <app-hero-unit>
   <div class="tc">
-
     <p class="f5 f4-m f3-l lh-copy mt0">
       Tracking stuff so you don't have to!
     </p>
@@ -10,12 +9,13 @@
     <div class="mv3">
       <app-data-list [items]="oneTwoThree">
         <app-card *appDataListItem="let item">
-          <span card-body *appDelay="item.delay; let time = loadTime" [ngStyle]="{ color: item.color }">
+          <!-- <span card-body *appDelay="item.delay; let time = loadTime"> -->
+          <span [ngStyle]="{ color: item.color }">
             {{ item.text }}
           </span>
+          <!-- </span> -->
         </app-card>
       </app-data-list>
     </div>
-
   </div>
 </app-hero-unit>
