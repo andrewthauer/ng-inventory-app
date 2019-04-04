@@ -1,22 +1,20 @@
-Inventory Trax
-==============
+# Inventory Trax
 
 > Track items in a simple inventory system
 
 This is a sample angular application using the following:
 
-* [Angular](https://angular.io/)
-* [RxJS](https://github.com/Reactive-Extensions/RxJS)
-* [ngrx](https://github.com/ngrx/platform)
-* [Ramda](http://ramdajs.com/)
-* [Tachyons CSS](http://tachyons.io/)
-* [Font Awesome](http://fontawesome.io/)
-* [JSON Server](https://github.com/typicode/json-server)
+- [Angular](https://angular.io/)
+- [RxJS](https://github.com/Reactive-Extensions/RxJS)
+- [NgRx](https://github.com/ngrx/platform)
+- [Ramda](http://ramdajs.com/)
+- [Tachyons CSS](http://tachyons.io/)
+- [Font Awesome](http://fontawesome.io/)
+- [JSON Server](https://github.com/typicode/json-server)
 
-*Note: This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.7.*
+_Note: This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.7._
 
-Setup
------
+## Setup
 
 ```shell
 # create a randomly generated `./db.json` file
@@ -26,8 +24,7 @@ npm run random-data
 npm install && npm start
 ```
 
-Usage
------
+## Usage
 
 ### Development server
 
