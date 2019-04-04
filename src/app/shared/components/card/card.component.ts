@@ -9,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
       <ng-content select="[card-body]"></ng-content>
       <ng-content select="[card-footer]"></ng-content>
     </div>
-  `
+  `,
 })
 export class CardComponent implements OnInit {
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 }

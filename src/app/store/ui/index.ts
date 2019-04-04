@@ -1,4 +1,3 @@
-
 export const uiStateKey = 'ui';
 
 export interface UiState {
@@ -6,7 +5,7 @@ export interface UiState {
 }
 
 export const uiInitialState: UiState = {
-  someValue: null
+  someValue: null,
 };
 
 export const reducer = (state = uiInitialState, action) => {

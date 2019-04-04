@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
     <div class="pa4 bg-moon-gray">
       <ng-content></ng-content>
     </div>
-  `
+  `,
 })
-export class HeroUnitComponent { }
+export class HeroUnitComponent {}

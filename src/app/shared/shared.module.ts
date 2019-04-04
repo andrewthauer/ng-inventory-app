@@ -4,7 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { AppTemplateDirective, DelayDirective, HoverStyleDirective } from './directives';
+import {
+  AppTemplateDirective,
+  DelayDirective,
+  HoverStyleDirective,
+} from './directives';
 import { EllipsePipe } from './pipes';
 
 import {
@@ -19,12 +23,7 @@ import {
 } from './components';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule,
-  ],
+  imports: [CommonModule, FormsModule, HttpClientModule, RouterModule],
   declarations: [
     AppTemplateDirective,
     ButtonComponent,
@@ -57,6 +56,6 @@ import {
     HeroUnitComponent,
     HoverStyleDirective,
     TitleComponent,
-  ]
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

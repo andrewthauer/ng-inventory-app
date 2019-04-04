@@ -13,7 +13,7 @@ export let LoggerToken = new InjectionToken<LoggerLike>('app.logger');
   providedIn: 'root',
 })
 export class Logger {
-  constructor() { }
+  constructor() {}
 
   info(message?: any, ...optionalParams: any[]) {
     console.log(message, optionalParams);

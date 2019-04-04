@@ -6,7 +6,8 @@ import * as randomWord from 'random-word';
 const numOfItems = 100;
 
 const randomNumber = () => Math.floor(Math.random() * 10);
-const writeFile = (filename, data) => fs.writeFileSync(filename, JSON.stringify(data, null, 2));
+const writeFile = (filename, data) =>
+  fs.writeFileSync(filename, JSON.stringify(data, null, 2));
 const createItem = (id: number): Item => ({
   id: id,
   name: randomWord(),

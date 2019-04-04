@@ -14,21 +14,23 @@ import * as itemSelectors from '../store/selectors';
     <app-title title="Item Details">
       <i class="fa fa-spinner fa-spin" *ngIf="(isBusy | async)"></i>
     </app-title>
-    <app-item-form [model]="model" (onSubmit)="onSubmit($event)" (onCancel)="onCancel()"></app-item-form>
-  `
+    <app-item-form
+      [model]="model"
+      (onSubmit)="onSubmit($event)"
+      (onCancel)="onCancel()"
+    ></app-item-form>
+  `,
 })
 export class ItemDetailComponent implements OnInit, OnDestroy {
   model: Item;
   isBusy: Observable<Boolean>;
   private subscription: Subscription;
 
-  constructor(
-    private route: ActivatedRoute,
-    private store: Store<ItemsState>,
-  ) {
+  constructor(private route: ActivatedRoute, private store: Store<ItemsState>) {
     this.isBusy = this.store.select(itemSelectors.getIsBusy);
-    this.store.select(itemSelectors.getSelected)
-      .subscribe(item => this.model = item);
+    this.store
+      .select(itemSelectors.getSelected)
+      .subscribe(item => (this.model = item));
   }
 
   ngOnInit() {

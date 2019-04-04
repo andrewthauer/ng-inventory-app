@@ -7,14 +7,12 @@ import { SharedModule } from '../shared';
 import { routes } from './items.routing';
 import { itemsStoreFeatureName, itemsReducer, ItemsEffects } from './store';
 
-import {
-  ItemPersistenceService,
-} from './services';
+import { ItemPersistenceService } from './services';
 
 import {
   ItemFormComponent,
   ItemFilterComponent,
-  QuantityEditorComponent
+  QuantityEditorComponent,
 } from './components';
 
 import {
@@ -38,8 +36,6 @@ import {
     ItemDetailComponent,
     QuantityEditorComponent,
   ],
-  providers: [
-    ItemPersistenceService,
-  ]
+  providers: [ItemPersistenceService],
 })
-export class ItemsModule { }
+export class ItemsModule {}

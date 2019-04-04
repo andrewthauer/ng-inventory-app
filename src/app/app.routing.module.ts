@@ -15,13 +15,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    HomeModule,
-    ItemsModule,
-    RouterModule.forRoot(appRoutes)
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [HomeModule, ItemsModule, RouterModule.forRoot(appRoutes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

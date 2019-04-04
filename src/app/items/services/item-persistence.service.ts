@@ -12,7 +12,7 @@ export class ItemPersistenceService {
 
   constructor(
     private http: HttpClient,
-    @Inject(AppConfigToken) appConfig: AppConfig
+    @Inject(AppConfigToken) appConfig: AppConfig,
   ) {
     this.serviceUrl = appConfig.serviceUrl;
   }
@@ -32,8 +32,8 @@ export class ItemPersistenceService {
   }
 
   deleteItem(item: Item): Observable<Item> {
-    return this.http.delete<Item>(`${this.serviceUrl}/items/${item.id}`).pipe(
-      map(() => item)
-    );
+    return this.http
+      .delete<Item>(`${this.serviceUrl}/items/${item.id}`)
+      .pipe(map(() => item));
   }
 }

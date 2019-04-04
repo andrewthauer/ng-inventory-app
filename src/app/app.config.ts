@@ -8,5 +8,5 @@ export interface AppConfig {
 export let AppConfigToken = new InjectionToken<AppConfig>('app.config');
 
 export const buildAppConfig = (serviceUrl = environment.apiUrl): AppConfig => ({
-  serviceUrl: serviceUrl
+  serviceUrl: serviceUrl,
 });

@@ -12,9 +12,13 @@ import * as itemSelectors from '../store/selectors';
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
-  styles: [`
-    .low-stock { color: red; }
-  `],
+  styles: [
+    `
+      .low-stock {
+        color: red;
+      }
+    `,
+  ],
 })
 export class ItemListComponent implements OnInit {
   StockLevel = StockLevel;
@@ -22,32 +26,33 @@ export class ItemListComponent implements OnInit {
   @Input() searchText: string;
   public model;
 
-  constructor(
-    private store: Store<ItemsState>,
-    private modal: ModalService
-  ) {
+  constructor(private store: Store<ItemsState>, private modal: ModalService) {
     this.model = combineLatest(
       this.store.select(itemSelectors.getAll),
       this.store.select(itemSelectors.getIsBusy),
       this.store.select(itemSelectors.getError),
-      (entities, isBusy, error) => ({ entities, isBusy, error })
+      (entities, isBusy, error) => ({ entities, isBusy, error }),
     );
   }
 
   ngOnInit() {
-    this.store.dispatch(itemActions.loadAll.started());
+    this.store.dispatch(itemActions.loadAll.started(null));
   }
 
   addItem() {
-    this.store.dispatch(itemActions.addOne.started());
+    this.store.dispatch(itemActions.addOne.started(null));
   }
 
   deleteItem(item: Item) {
-    this.modal.confirm('Are you sure?')
-      .subscribe(ifElse(identity,
-        () => this.store.dispatch(itemActions.removeOne.started(item)),
-        () => false
-      ));
+    this.modal
+      .confirm('Are you sure?')
+      .subscribe(
+        ifElse(
+          identity,
+          () => this.store.dispatch(itemActions.removeOne.started(item)),
+          () => false,
+        ),
+      );
   }
 
   navigateToItemDetails(item) {

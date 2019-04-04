@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import {
   ItemsComponent,
   ItemListComponent,
-  ItemDetailComponent
+  ItemDetailComponent,
 } from './containers';
 
 export const routes: Routes = [
@@ -12,7 +12,7 @@ export const routes: Routes = [
     component: ItemsComponent,
     children: [
       { path: '', component: ItemListComponent },
-      { path: ':id', component: ItemDetailComponent }
-    ]
-  }
+      { path: ':id', component: ItemDetailComponent },
+    ],
+  },
 ];

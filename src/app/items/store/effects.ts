@@ -11,7 +11,7 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { FsaAction } from '../../../lib/ts-redux-fsa';
+import { Action as FsaAction } from 'typescript-fsa';
 import { AppError, ToastService } from '../../core';
 import { Item, ItemFilters } from '../models';
 import { itemActions } from './actions';
@@ -59,7 +59,7 @@ export class ItemsEffects {
         ),
     ),
     delay(DELAY_SIMULATION),
-    map(items => itemActions.loadAll.done(items)),
+    map(items => itemActions.loadAll.done({ params: null, result: items })),
   );
 
   @Effect()
@@ -80,7 +80,7 @@ export class ItemsEffects {
         ),
     ),
     delay(DELAY_SIMULATION),
-    map(item => itemActions.loadOne.done(item)),
+    map(item => itemActions.loadOne.done({ params: null, result: item })),
   );
 
   @Effect()
@@ -100,7 +100,7 @@ export class ItemsEffects {
           ),
         ),
     ),
-    map(item => itemActions.addOne.done(item)),
+    map(item => itemActions.addOne.done({ params: null, result: item })),
     tap(() => this.toast.success('Item Added')),
   );
 
@@ -123,7 +123,7 @@ export class ItemsEffects {
         ),
     ),
     delay(DELAY_SIMULATION),
-    map(item => itemActions.saveOne.done(item)),
+    map(item => itemActions.saveOne.done({ params: null, result: item })),
     tap(() => this.toast.success('Item Saved')),
     // NOTE: This is used in multiple places, consider decoupling navigation from the effect
     // or potentially making the actions more fine grained
@@ -149,7 +149,7 @@ export class ItemsEffects {
         ),
     ),
     delay(DELAY_SIMULATION),
-    map(item => itemActions.removeOne.done(item)),
+    map(item => itemActions.removeOne.done({ params: null, result: item })),
     tap(() => this.toast.success('Item Deleted')),
   );
 

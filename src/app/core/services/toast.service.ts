@@ -4,7 +4,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
 const snackBarConfig: MatSnackBarConfig = {
   verticalPosition: 'top',
-  // duration: 3000,
+  duration: 2000,
 };
 
 @Injectable({

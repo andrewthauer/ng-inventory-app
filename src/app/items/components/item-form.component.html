@@ -1,37 +1,81 @@
-<form class="black-80" #itemForm="ngForm" (ngSubmit)="submit(itemForm)" *ngIf="model">
+<form
+  class="black-80"
+  #itemForm="ngForm"
+  (ngSubmit)="submit(itemForm)"
+  *ngIf="model"
+>
   <div class="">
     <!-- id -->
     <input id="id" name="id" type="hidden" [ngModel]="model.id" />
 
     <!-- name -->
-    <label for="name" class="f6 b db mb2">Name <span class="red" *ngIf="name.invalid">(required)</span></label>
-    <input id="name" name="name" #name="ngModel" class="input-reset ba b--black-20 pa2 mb3 db w-100"
-      type="text" required [ngModel]="model.name" />
+    <label for="name" class="f6 b db mb2"
+      >Name <span class="red" *ngIf="name.invalid">(required)</span></label
+    >
+    <input
+      id="name"
+      name="name"
+      #name="ngModel"
+      class="input-reset ba b--black-20 pa2 mb3 db w-100"
+      type="text"
+      required
+      [ngModel]="model.name"
+    />
 
     <!-- description -->
-    <label for="description" class="f6 b db mb2">Description <span class="normal black-60">(optional)</span></label>
-    <textarea id="description" name="description" #description="ngModel" class="input-reset ba b--black-20 pa2 mb3 db w-100"
-      type="text" [ngModel]="model.description">
+    <label for="description" class="f6 b db mb2"
+      >Description <span class="normal black-60">(optional)</span></label
+    >
+    <textarea
+      id="description"
+      name="description"
+      #description="ngModel"
+      class="input-reset ba b--black-20 pa2 mb3 db w-100"
+      type="text"
+      [ngModel]="model.description"
+    >
     </textarea>
 
     <!-- imageUrl -->
     <label for="imageUrl" class="f6 b db mb2">Image Url</label>
-    <input id="imageUrl" name="imageUrl" #imageUrl="ngModel" class="input-reset ba b--black-20 pa2 mb3 db w-100"
-      type="text" [ngModel]="model.imageUrl" />
+    <input
+      id="imageUrl"
+      name="imageUrl"
+      #imageUrl="ngModel"
+      class="input-reset ba b--black-20 pa2 mb3 db w-100"
+      type="text"
+      [ngModel]="model.imageUrl"
+    />
 
     <!-- minimumQuantity -->
     <label for="minimumQuantity" class="f6 b db mb2">Min Quantity</label>
-    <input id="minimumQuantity" name="minimumQuantity" #quantity="ngModel" class="input-reset ba b--black-20 pa2 mb3 db w-100"
-      type="number" [ngModel]="model.minimumQuantity" />
+    <input
+      id="minimumQuantity"
+      name="minimumQuantity"
+      #quantity="ngModel"
+      class="input-reset ba b--black-20 pa2 mb3 db w-100"
+      type="number"
+      [ngModel]="model.minimumQuantity"
+    />
 
     <!-- quantity -->
     <label for="quantity" class="f6 b db mb2">Quantity</label>
-    <input id="quantity" name="quantity" #quantity="ngModel" class="input-reset ba b--black-20 pa2 mb3 db w-100"
-      type="number" [ngModel]="model.quantity" />
-    </div>
+    <input
+      id="quantity"
+      name="quantity"
+      #quantity="ngModel"
+      class="input-reset ba b--black-20 pa2 mb3 db w-100"
+      type="number"
+      [ngModel]="model.quantity"
+    />
+  </div>
 
   <div class="pv2 tr">
-    <app-button text="Save" type="submit" [disabled]="!itemForm.valid"></app-button>
+    <app-button
+      text="Save"
+      type="submit"
+      [disabled]="!itemForm.valid"
+    ></app-button>
     <app-button text="Cancel" (click)="cancel()"></app-button>
     <span class="green v-mid dib" *ngIf="itemForm.valid">
       &nbsp;<i class="fa fa-check-circle-o fa-2x"></i>

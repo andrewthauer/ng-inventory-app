@@ -6,12 +6,7 @@ import { routes } from './lazy.routing';
 import { LazyPageComponent } from './lazy-page.component';
 
 @NgModule({
-  imports: [
-    SharedModule,
-    RouterModule.forChild(routes),
-  ],
-  declarations: [
-    LazyPageComponent,
-  ]
+  imports: [SharedModule, RouterModule.forChild(routes)],
+  declarations: [LazyPageComponent],
 })
-export class LazyModule { }
+export class LazyModule {}

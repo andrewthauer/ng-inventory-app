@@ -13,5 +13,5 @@ export const itemsInitialState: ItemsState = {
   entities: [],
   error: null,
   isBusy: false,
-  selectedItemId: null
+  selectedItemId: null,
 };

@@ -1,7 +1,10 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
+import {
+  StoreRouterConnectingModule,
+  RouterStateSerializer,
+} from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { throwIfAlreadyLoaded } from '../core';
@@ -19,8 +22,8 @@ import { CustomRouterStateSerializer } from './router';
     EffectsModule.forRoot(allEffects),
   ],
   providers: [
-    { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer }
-  ]
+    { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
+  ],
 })
 export class AppStoreModule {
   constructor(@Optional() @SkipSelf() parentModule: AppStoreModule) {

@@ -4,7 +4,7 @@ export enum StockLevel {
   out,
   low,
   ok,
-  overstock
+  overstock,
 }
 
 export function calcStockLevel(item: Item) {

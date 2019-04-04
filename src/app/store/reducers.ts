@@ -10,11 +10,13 @@ import { uiReducer } from './ui';
 
 export const reducers: ActionReducerMap<AppState> = {
   router: routerReducer,
-  ui: uiReducer
+  ui: uiReducer,
 };
 
 // console.log all actions
-export function logger(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
+export function logger(
+  reducer: ActionReducer<AppState>,
+): ActionReducer<AppState> {
   return function(state: AppState, action: any): AppState {
     console.log('state', state);
     console.log('action', action);

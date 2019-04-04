@@ -9,9 +9,9 @@ import { TitleComponent } from './title.component';
     <app-title title="some text">
       <span>meta</span>
     </app-title>
-  `
+  `,
 })
-class TitleTestComponent { }
+class TitleTestComponent {}
 
 describe('TitleComponent', () => {
   let fixture: ComponentFixture<TitleComponent>;
@@ -21,11 +21,8 @@ describe('TitleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TitleComponent,
-        TitleTestComponent,
-      ],
-      imports: []
+      declarations: [TitleComponent, TitleTestComponent],
+      imports: [],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TitleComponent);

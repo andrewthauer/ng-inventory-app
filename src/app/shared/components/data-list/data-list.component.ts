@@ -1,4 +1,10 @@
-import { Component, OnInit, Input, ContentChild, TemplateRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ContentChild,
+  TemplateRef,
+} from '@angular/core';
 import { DataListItemDirective } from './data-list-item.directive';
 
 /**
@@ -16,15 +22,18 @@ import { DataListItemDirective } from './data-list-item.directive';
   selector: 'app-data-list',
   template: `
     <ng-container *ngFor="let item of items">
-      <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }"></ng-container>
+      <ng-container
+        *ngTemplateOutlet="itemTemplate; context: { $implicit: item }"
+      ></ng-container>
     </ng-container>
-  `
+  `,
 })
 export class DataListComponent implements OnInit {
   @Input() items: any[];
-  @ContentChild(DataListItemDirective, { read: TemplateRef }) itemTemplate: TemplateRef<any>;
+  @ContentChild(DataListItemDirective, { read: TemplateRef })
+  itemTemplate: TemplateRef<any>;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 }

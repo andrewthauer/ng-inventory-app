@@ -4,7 +4,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   selector: 'app-button',
   template: `
     <button
-      [ngClass]="{ 'pa3 white br3 bs--none': true, 'bg-gray': !disabled, 'bg-light-gray': disabled }"
+      [ngClass]="{
+        'pa3 white br3 bs--none': true,
+        'bg-gray': !disabled,
+        'bg-light-gray': disabled
+      }"
       [type]="type"
       [disabled]="disabled"
       (click)="onClick($event)"
@@ -12,7 +16,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
       <i [ngClass]="['fa', 'fa-' + icon]" *ngIf="icon"></i>
       {{ text }}
     </button>
-  `
+  `,
 })
 export class ButtonComponent implements OnInit {
   @Input() text = '';
@@ -21,9 +25,9 @@ export class ButtonComponent implements OnInit {
   @Input() icon;
   @Output() click: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   onClick(e) {
     this.click.emit(e);

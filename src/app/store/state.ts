@@ -15,5 +15,5 @@ export const appInitialState: AppState = {
 };
 
 export const appStoreRouterConfig: StoreRouterConfig = {
-  stateKey: routerStateKey
+  stateKey: routerStateKey,
 };

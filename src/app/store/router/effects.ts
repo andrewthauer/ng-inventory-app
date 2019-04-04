@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { map, tap } from 'rxjs/operators';
 
-import { FsaAction } from '../../../lib/ts-redux-fsa';
+import { Action as FsaAction } from 'typescript-fsa';
 import { routerActions } from './actions';
 import { RouterActionPayload } from './state';
 
@@ -15,24 +15,26 @@ export class RouterEffects {
   navigate$ = this.actions$.pipe(
     ofType<FsaAction<RouterActionPayload>>(routerActions.go.type),
     map(action => action.payload),
-    tap(({ path, query: queryParams, extras}) => this.router.navigate(path, { queryParams, ...extras }))
+    tap(({ path, query: queryParams, extras }) =>
+      this.router.navigate(path, { queryParams, ...extras }),
+    ),
   );
 
   @Effect({ dispatch: false })
   navigateBack$ = this.actions$.pipe(
     ofType<FsaAction<RouterActionPayload>>(routerActions.back.type),
-    tap(() => this.location.back())
+    tap(() => this.location.back()),
   );
 
   @Effect({ dispatch: false })
   navigateForward$ = this.actions$.pipe(
     ofType<FsaAction<RouterActionPayload>>(routerActions.forward.type),
-    tap(() => this.location.forward())
+    tap(() => this.location.forward()),
   );
 
   constructor(
     private actions$: Actions,
     private router: Router,
-    private location: Location
-  ) { }
+    private location: Location,
+  ) {}
 }

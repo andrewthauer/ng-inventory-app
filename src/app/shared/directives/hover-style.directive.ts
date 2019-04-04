@@ -4,7 +4,7 @@ import { Directive, ElementRef, Input, HostListener } from '@angular/core';
 export class HoverStyleDirective {
   style: string;
 
-  constructor(private element: ElementRef) { }
+  constructor(private element: ElementRef) {}
 
   @Input()
   set appHoverStyle(style: string) {

@@ -4,15 +4,21 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   selector: 'app-item-filter',
   template: `
     <div class="tr">
-      <input #searchField type="text" class="pa1" [(ngModel)]="searchText" placeholder="Search ..." />
+      <input
+        #searchField
+        type="text"
+        class="pa1"
+        [(ngModel)]="searchText"
+        placeholder="Search ..."
+      />
     </div>
-  `
+  `,
 })
 export class ItemFilterComponent implements OnInit {
   @Output() valueChanged = new EventEmitter<string>();
   private _searchText: string;
 
-  constructor() { }
+  constructor() {}
 
   get searchText() {
     return this._searchText;
@@ -26,5 +32,5 @@ export class ItemFilterComponent implements OnInit {
     }
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 }
