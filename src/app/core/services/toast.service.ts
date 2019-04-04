@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as toastr from 'toastr';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ToastService {
   constructor() {
     toastr.options.closeButton = true;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { curry } from 'ramda';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { catchError, debounceTime, delay, map, switchMap, tap } from 'rxjs/operators';
 
 import { FsaAction } from '../../../lib/ts-redux-fsa';

@@ -1,24 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Modal } from 'ngx-modialog/plugins/js-native';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ModalService {
-  constructor(
-    private modal: Modal
-  ) { }
-
   confirm(message: string): Observable<Boolean> {
     return Observable.create(observer => {
-      this.modal.confirm()
-        .message('Are you sure?').open()
-        .result.then(result => {
-          observer.next(true);
-          observer.complete();
-        }).catch(() => {
-          observer.next(false);
-          observer.complete();
-        });
+      const result = window.confirm(message);
+      observer.next(result);
+      observer.complete();
     });
   }
 }

@@ -9,7 +9,9 @@ export interface LoggerLike {
 
 export let LoggerToken = new InjectionToken<LoggerLike>('app.logger');
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class Logger {
   constructor() { }
 

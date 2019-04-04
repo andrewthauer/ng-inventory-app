@@ -1,8 +1,6 @@
 import { NgModule, ModuleWithProviders, Optional, SkipSelf, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ModalModule } from 'ngx-modialog';
-import { JSNativeModalModule } from 'ngx-modialog/plugins/js-native';
 
 import { throwIfAlreadyLoaded } from './shared';
 
@@ -26,18 +24,12 @@ import {
   imports: [
     CommonModule,
     RouterModule,
-    ModalModule.forRoot(),
-    JSNativeModalModule
   ],
   declarations: [
     HeaderComponent,
     NotFoundComponent,
   ],
-  providers: [
-    Logger,
-    ModalService,
-    ToastService,
-  ],
+  providers: [],
   exports: [
     HeaderComponent,
     NotFoundComponent,
