@@ -1,30 +1,38 @@
 import { Injectable } from '@angular/core';
 
-declare global {
-  const toastr: any;
-}
+// declare const toastr: any;
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToastService {
   constructor() {
-    toastr.options.closeButton = true;
+    // if (toastr) {
+    //   toastr.options.closeButton = true;
+    // }
   }
 
   info(message: string) {
-    toastr.info(message);
+    // if (toastr) {
+    //   toastr.info(message);
+    // }
   }
 
   success(message: string) {
-    toastr.success(message);
+    // if (toastr) {
+    //   toastr.success(message);
+    // }
   }
 
   warning(message: string) {
-    toastr.warning(message);
+    // if (toastr) {
+    //   toastr.warning(message);
+    // }
   }
 
   error(message: string) {
-    toastr.error(message);
+    // if (toastr) {
+    //   toastr.error(message);
+    // }
   }
 }

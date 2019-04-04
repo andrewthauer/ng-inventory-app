@@ -4,20 +4,22 @@
   "license": "MIT",
   "scripts": {
     "start": "npm-run-all --parallel start:api serve",
-    "start:ssr": "npm-run-all --parallel start:api serve:ssr",
+    "start:ssr": "npm run build:ssr && npm-run-all --parallel start:api serve:ssr",
     "start:api": "json-server --watch db.json",
     "ssr": "npm-run-all start:ssr",
     "ng": "ng",
     "serve": "ng serve",
-    "serve:ssr": "node dist/server.js",
     "build": "ng build",
     "build:prod": "ng build --prod",
-    "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
-    "build:client-and-server-bundles": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
+    "compile:server": "webpack --config webpack.server.config.js --progress --colors",
+    "serve:ssr": "node dist/server",
+    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
+    "build:ssr:prod": "npm run build:client-and-server-bundles:prod && npm run compile:server",
+    "build:client-and-server-bundles": "ng build && ng run inventory-app:server",
+    "build:client-and-server-bundles:prod": "ng build --prod && ng run inventory-app:server:production",
     "generate:random-data": "ts-node ./script/random-data.ts"
   },
   "private": true,
@@ -78,6 +80,7 @@
     "ts-loader": "5.3.3",
     "ts-node": "8.0.3",
     "tslint": "5.15.0",
-    "typescript": "3.2.4"
+    "typescript": "3.2.4",
+    "webpack-cli": "3.3.0"
   }
 }

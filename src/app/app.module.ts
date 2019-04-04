@@ -16,26 +16,26 @@ import { CoreModule, LoggerToken } from './core';
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
+    // ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     CoreModule,
     AppRoutingModule,
     AppStoreModule,
   ],
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   providers: [
     { provide: LoggerToken, useValue: console },
     { provide: AppConfigToken, useValue: buildAppConfig() },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    @Inject(APP_ID) private appId: string
+    @Inject(APP_ID) private appId: string,
   ) {
-    const platform = isPlatformBrowser(platformId) ? 'on the server' : 'in the browser';
+    const platform = isPlatformBrowser(platformId)
+      ? 'on the server'
+      : 'in the browser';
     console.log(`Running ${platform} with appId=${appId}`);
   }
 }
