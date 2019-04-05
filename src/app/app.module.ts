@@ -7,8 +7,8 @@ import { isPlatformBrowser } from '@angular/common';
 
 import { environment } from '../environments/environment';
 
-import { AppConfigToken, buildAppConfig } from './app.config';
-import { AppRoutingModule } from './app.routing.module';
+import { AppConfigToken, buildAppConfig } from './app-config';
+import { AppRoutingModule } from './app-routing.module';
 import { AppStoreModule } from './store';
 import { AppComponent } from './app.component';
 import { CoreModule, LoggerToken } from './core';

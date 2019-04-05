@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { AppConfigToken, AppConfig } from '../../app.config';
+import { AppConfigToken, AppConfig } from '../../app-config';
 import { Item, ItemFilters } from '../models';
 
 @Injectable({

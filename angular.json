@@ -34,6 +34,16 @@
             "es5BrowserSupport": true
           },
           "configurations": {
+            "ivy": {
+              "fileReplacements": [
+                {
+                  "replace": "src/app/app-routes.ts",
+                  "with": "src/app/app-routes.ivy.ts"
+                }
+              ],
+              "tsConfig": "tsconfig.ivy.json",
+              "aot": true
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -66,6 +76,9 @@
             "browserTarget": "inventory-app:build"
           },
           "configurations": {
+            "ivy": {
+              "browserTarget": "inventory-app:build:ivy"
+            },
             "production": {
               "browserTarget": "inventory-app:build:production"
             }
