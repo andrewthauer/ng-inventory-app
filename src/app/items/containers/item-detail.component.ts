@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { routerActions } from '../../store';
 import { Item } from '../models';
-import { ItemsState, itemActions } from '../store';
+import { ItemState, itemActions } from '../store';
 import * as itemSelectors from '../store/selectors';
 
 @Component({
@@ -26,7 +26,7 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
   isBusy: Observable<Boolean>;
   private subscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private store: Store<ItemsState>) {
+  constructor(private route: ActivatedRoute, private store: Store<ItemState>) {
     this.isBusy = this.store.select(itemSelectors.getIsBusy);
     this.store
       .select(itemSelectors.getSelected)

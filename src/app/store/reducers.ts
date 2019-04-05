@@ -1,28 +1,17 @@
-import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
+import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { routerReducer } from '@ngrx/router-store';
 import { storeFreeze } from 'ngrx-store-freeze';
 
 import { environment } from '../../environments/environment';
+
 import { AppState } from './state';
 import { uiReducer } from './ui';
-
-// NOTE: `items` is configured as a feature store
+import { logger } from './logger';
 
 export const reducers: ActionReducerMap<AppState> = {
   router: routerReducer,
   ui: uiReducer,
 };
-
-// console.log all actions
-export function logger(
-  reducer: ActionReducer<AppState>,
-): ActionReducer<AppState> {
-  return function(state: AppState, action: any): AppState {
-    console.log('state', state);
-    console.log('action', action);
-    return reducer(state, action);
-  };
-}
 
 /**
  * By default, @ngrx/store uses combineReducers with the reducer map to compose

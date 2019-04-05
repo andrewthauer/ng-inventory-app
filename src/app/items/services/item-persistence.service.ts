@@ -6,7 +6,9 @@ import { map } from 'rxjs/operators';
 import { AppConfigToken, AppConfig } from '../../app.config';
 import { Item, ItemFilters } from '../models';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ItemPersistenceService {
   serviceUrl: string;
 

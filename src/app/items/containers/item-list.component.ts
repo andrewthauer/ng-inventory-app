@@ -6,7 +6,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { routerActions } from '../../store';
 import { ModalService } from '../../core';
 import { Item, StockLevel, calcStockLevel, ItemFilters } from '../models';
-import { ItemsState, itemActions } from '../store';
+import { ItemState, itemActions } from '../store';
 import * as itemSelectors from '../store/selectors';
 
 @Component({
@@ -26,7 +26,7 @@ export class ItemListComponent implements OnInit {
   @Input() searchText: string;
   public model;
 
-  constructor(private store: Store<ItemsState>, private modal: ModalService) {
+  constructor(private store: Store<ItemState>, private modal: ModalService) {
     this.model = combineLatest(
       this.store.select(itemSelectors.getAll),
       this.store.select(itemSelectors.getIsBusy),

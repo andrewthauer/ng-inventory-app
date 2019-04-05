@@ -3,14 +3,18 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { map, tap } from 'rxjs/operators';
-
 import { Action as FsaAction } from 'typescript-fsa';
-import { routerActions } from './actions';
-import { RouterActionPayload } from './state';
 
-// Effects
+import { routerActions, RouterActionPayload } from './actions';
+
 @Injectable()
 export class RouterEffects {
+  constructor(
+    private actions$: Actions,
+    private router: Router,
+    private location: Location,
+  ) {}
+
   @Effect({ dispatch: false })
   navigate$ = this.actions$.pipe(
     ofType<FsaAction<RouterActionPayload>>(routerActions.go.type),
@@ -22,19 +26,13 @@ export class RouterEffects {
 
   @Effect({ dispatch: false })
   navigateBack$ = this.actions$.pipe(
-    ofType<FsaAction<RouterActionPayload>>(routerActions.back.type),
+    ofType(routerActions.back.type),
     tap(() => this.location.back()),
   );
 
   @Effect({ dispatch: false })
   navigateForward$ = this.actions$.pipe(
-    ofType<FsaAction<RouterActionPayload>>(routerActions.forward.type),
+    ofType(routerActions.forward.type),
     tap(() => this.location.forward()),
   );
-
-  constructor(
-    private actions$: Actions,
-    private router: Router,
-    private location: Location,
-  ) {}
 }

@@ -6,11 +6,13 @@ import { PLATFORM_ID, APP_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 import { environment } from '../environments/environment';
+
 import { AppConfigToken, buildAppConfig } from './app.config';
 import { AppRoutingModule } from './app.routing.module';
 import { AppStoreModule } from './store';
 import { AppComponent } from './app.component';
 import { CoreModule, LoggerToken } from './core';
+import { SharedModule } from './shared';
 
 @NgModule({
   imports: [
@@ -18,8 +20,9 @@ import { CoreModule, LoggerToken } from './core';
     BrowserAnimationsModule,
     // ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     CoreModule,
-    AppRoutingModule,
     AppStoreModule,
+    AppRoutingModule,
+    SharedModule,
   ],
   declarations: [AppComponent],
   providers: [

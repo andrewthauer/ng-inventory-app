@@ -1,11 +1,9 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { head } from 'ramda';
 
-import { ItemsState, itemsStoreFeatureName } from './state';
+import { ItemState, itemStoreFeatureName } from './state';
 
-export const getState = createFeatureSelector<ItemsState>(
-  itemsStoreFeatureName,
-);
+export const getState = createFeatureSelector<ItemState>(itemStoreFeatureName);
 
 export const getError = createSelector(
   getState,
@@ -24,7 +22,7 @@ export const getAll = createSelector(
 
 export const getSelectedId = createSelector(
   getState,
-  (items: ItemsState) => items.selectedItemId,
+  (items: ItemState) => items.selectedItemId,
 );
 
 export const getSelected = createSelector(

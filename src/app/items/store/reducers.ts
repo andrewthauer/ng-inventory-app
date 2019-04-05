@@ -2,7 +2,7 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 import { upsert, remove } from '../../utils/fp';
 import { Item } from '../models';
-import { ItemsState, itemsInitialState } from './state';
+import { ItemState, itemInitialState } from './state';
 import { itemActions } from './actions';
 
 const handleError = (state: any, err: Error | any) => ({
@@ -18,19 +18,19 @@ const selectItemId = (state, id: number) => {
   return { ...state, selectedItemId: id };
 };
 
-const upsertItem = (state: ItemsState, item: Item): ItemsState => ({
+const upsertItem = (state: ItemState, item: Item): ItemState => ({
   ...state,
   entities: upsert(i => i.id, item, state.entities),
   isBusy: false,
 });
 
-const removeItem = (state: ItemsState, item: Item): ItemsState => ({
+const removeItem = (state: ItemState, item: Item): ItemState => ({
   ...state,
   entities: remove(i => i.id, item, state.entities),
   isBusy: false,
 });
 
-export const reducer = reducerWithInitialState(itemsInitialState)
+export const reducer = reducerWithInitialState(itemInitialState)
   .case(itemActions.setFilters, (state, text) => ({ ...state, filter: text }))
   .case(itemActions.selectOne, selectItemId)
   .cases(
@@ -70,6 +70,6 @@ export const reducer = reducerWithInitialState(itemsInitialState)
     handleAsyncError,
   );
 
-export function itemsReducer(state: ItemsState = itemsInitialState, action) {
+export function itemReducer(state: ItemState = itemInitialState, action) {
   return reducer(state, action);
 }

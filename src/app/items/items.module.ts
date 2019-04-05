@@ -5,9 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { SharedModule } from '../shared';
 import { routes } from './items.routing';
-import { itemsStoreFeatureName, itemsReducer, ItemsEffects } from './store';
-
-import { ItemPersistenceService } from './services';
+import { itemStoreFeatureName, itemReducer, ItemsEffects } from './store';
 
 import {
   ItemFormComponent,
@@ -25,7 +23,7 @@ import {
   imports: [
     SharedModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature(itemsStoreFeatureName, itemsReducer),
+    StoreModule.forFeature(itemStoreFeatureName, itemReducer),
     EffectsModule.forFeature([ItemsEffects]),
   ],
   declarations: [
@@ -36,6 +34,6 @@ import {
     ItemDetailComponent,
     QuantityEditorComponent,
   ],
-  providers: [ItemPersistenceService],
+  providers: [],
 })
 export class ItemsModule {}

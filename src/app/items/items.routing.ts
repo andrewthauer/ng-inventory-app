@@ -8,7 +8,7 @@ import {
 
 export const routes: Routes = [
   {
-    path: 'items',
+    path: '',
     component: ItemsComponent,
     children: [
       { path: '', component: ItemListComponent },
