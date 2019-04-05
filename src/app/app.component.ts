@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ApplicationRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Inventory Trax';
+
+  // constructor(app: ApplicationRef) {
+  //   setInterval(() => {
+  //     app.tick();
+  //   }, 1000);
+  // }
 }

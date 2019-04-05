@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'ellipse',
+  pure: true,
 })
 export class EllipsePipe implements PipeTransform {
   transform(value: string, charLimit = 50): any {

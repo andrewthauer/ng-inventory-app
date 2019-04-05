@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 @Component({
   selector: 'app-item-filter',
@@ -13,6 +20,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
       />
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemFilterComponent implements OnInit {
   @Output() valueChanged = new EventEmitter<string>();

@@ -1,4 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -20,6 +25,7 @@ import * as itemSelectors from '../store/selectors';
       (onCancel)="onCancel()"
     ></app-item-form>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemDetailComponent implements OnInit, OnDestroy {
   model: Item;

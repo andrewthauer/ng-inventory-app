@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-title',
@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
       <ng-content></ng-content>
     </h3>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TitleComponent {
   @Input() title: string;

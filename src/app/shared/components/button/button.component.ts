@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -17,6 +24,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
       {{ text }}
     </button>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent implements OnInit {
   @Input() text = '';

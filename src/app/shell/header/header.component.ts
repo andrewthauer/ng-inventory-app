@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +9,7 @@ import { Component, Input } from '@angular/core';
       </a>
     </header>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   @Input() title: string;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ModalService } from '../core/services/modal.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { ModalService } from '../core/services/modal.service';
     <p>This page was lazy loaded</p>
     <button (click)="openDialog()">Open Dialog</button>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LazyPageComponent {
   constructor(private modalService: ModalService) {}

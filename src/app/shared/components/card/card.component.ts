@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
       <ng-content select="[card-footer]"></ng-content>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent implements OnInit {
   constructor() {}

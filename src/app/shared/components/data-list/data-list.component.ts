@@ -4,6 +4,7 @@ import {
   Input,
   ContentChild,
   TemplateRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { DataListItemDirective } from './data-list-item.directive';
 
@@ -27,6 +28,7 @@ import { DataListItemDirective } from './data-list-item.directive';
       ></ng-container>
     </ng-container>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataListComponent implements OnInit {
   @Input() items: any[];

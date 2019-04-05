@@ -1,4 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ifElse, identity } from 'ramda';
 import { Observable, combineLatest } from 'rxjs';
@@ -19,12 +24,13 @@ import * as itemSelectors from '../store/selectors';
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemListComponent implements OnInit {
   StockLevel = StockLevel;
 
   @Input() searchText: string;
-  public model;
+  public model: Observable<any>;
 
   constructor(private store: Store<ItemState>, private modal: ModalService) {
     this.model = combineLatest(
@@ -71,5 +77,9 @@ export class ItemListComponent implements OnInit {
   quantityChanged(item: Item, newQuantity) {
     const newItem: Item = { ...item, quantity: newQuantity };
     this.store.dispatch(itemActions.saveOne.started(newItem));
+  }
+
+  trackByFn(index, item: Item) {
+    return (item && item.id) || index;
   }
 }

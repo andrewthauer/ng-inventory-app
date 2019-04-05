@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
 
+import { HomeModule } from './home';
+
 export const featureRoutes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
+    loadChildren: () => HomeModule,
   },
   {
     path: 'items',

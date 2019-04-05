@@ -5,6 +5,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -13,6 +14,7 @@ import { Item } from '../models';
 @Component({
   selector: 'app-item-form',
   templateUrl: 'item-form.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemFormComponent implements OnInit, OnDestroy {
   @Input() model: Item;
