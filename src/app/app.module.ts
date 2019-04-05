@@ -13,6 +13,7 @@ import { AppStoreModule } from './store';
 import { AppComponent } from './app.component';
 import { CoreModule, LoggerToken } from './core';
 import { SharedModule } from './shared';
+import { ShellModule } from './shell/shell.module';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { SharedModule } from './shared';
     AppStoreModule,
     AppRoutingModule,
     SharedModule,
+    ShellModule,
   ],
   declarations: [AppComponent],
   providers: [

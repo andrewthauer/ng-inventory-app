@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { NotFoundComponent } from './core/containers/not-found.component';
+import { NotFoundComponent } from './shell/not-found/not-found.component';
 import { HomeModule } from './home';
 
 const featureRoutes: Routes = [

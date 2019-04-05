@@ -12,14 +12,12 @@ import { MatSnackBarModule } from '@angular/material';
 
 import { throwIfAlreadyLoaded } from './shared';
 import { LoggerToken, LoggerLike } from './services';
-import { HeaderComponent } from './components';
-import { NotFoundComponent } from './containers';
 
 @NgModule({
   imports: [CommonModule, RouterModule, MatSnackBarModule],
-  declarations: [HeaderComponent, NotFoundComponent],
+  declarations: [],
   providers: [],
-  exports: [HeaderComponent, NotFoundComponent],
+  exports: [],
 })
 export class CoreModule {
   constructor(
