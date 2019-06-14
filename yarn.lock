@@ -236,6 +236,23 @@
   dependencies:
     tslib "^1.9.0"
 
+"@augury/core@0.6.0", "@augury/core@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@augury/core/-/core-0.6.0.tgz#da6b056977aa8873fbb09867b2335f22151f3f72"
+  integrity sha512-usrU9sYeFOiBgxmyY0TEaBG2YxxqMt0VsWVxRvB6jb9DpxmpZYtSW5y/mlwIl2n2RNq2fyQzMeOh9QmidziLsw==
+
+"@augury/performance-profiler-plugin@0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@augury/performance-profiler-plugin/-/performance-profiler-plugin-0.6.1.tgz#1b36da150ad21bc04bfdf5681608aa82b40acfe5"
+  integrity sha512-3plDJzAUngVOQc+Zp9dbyijhNH0tVJXmWIzqg/wDt70zeakatNcTkHYTT4oZBzIhGN+yelq2bj/k9STwgwMDGA==
+  dependencies:
+    "@augury/core" "^0.6.0"
+
+"@augury/schematics@0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@augury/schematics/-/schematics-0.6.1.tgz#1f74123efc5467b79d286433f654afc1591e173a"
+  integrity sha512-zu/9AMmYGlWu6tbjm6RhBaY7yMtZ92pmoeCEkWFNFR1POHbeu77lC7WAzF/4q16Qsn/8kyix/ItqT4EVZX9orQ==
+
 "@babel/code-frame@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0.tgz#06e2ab19bdb535385559aabb5ba59729482800f8"
